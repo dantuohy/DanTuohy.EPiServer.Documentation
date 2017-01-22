@@ -212,6 +212,7 @@
     <Content Include="Views\DocsSettings\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Views\Shared\_Layout.cshtml" />
     <None Include="Web.config.install.xdt">
       <SubType>Designer</SubType>
     </None>
