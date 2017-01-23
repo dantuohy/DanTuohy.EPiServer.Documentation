@@ -1,8 +1,8 @@
 ﻿using DanTuohy.EPiServer.Docs.Interfaces;
-using DanTuohy.EPiServer.Docs.ViewModels;
 using EPiServer.Shell;
 using System.Linq;
 using System.Web.Mvc;
+using DanTuohy.EPiServer.Docs.Models.ViewModels;
 
 
 namespace DanTuohy.EPiServer.Docs.Controllers

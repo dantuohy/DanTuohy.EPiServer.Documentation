@@ -1,14 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DanTuohy.EPiServer.Docs.Interfaces
+﻿namespace DanTuohy.EPiServer.Docs.Interfaces
 {
+    /// <summary>
+    /// Add this to EPiServer property attributes to allow documentation to be generated for
+    /// </summary>
     public interface IDocumentable
     {
+        /// <summary>
+        /// The display name of the attribute
+        /// </summary>
         string Name { get; }
+
+        /// <summary>
+        /// The value/description of the attribute
+        /// </summary>
         string Value { get; }
     }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using EPiServer.DataAbstraction;
+﻿using System.Collections.Generic;
 
 namespace DanTuohy.EPiServer.Docs.Models
 {

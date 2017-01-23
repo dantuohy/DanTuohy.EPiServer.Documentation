@@ -1,14 +1,12 @@
-﻿using System;
-using System.Linq;
-using System.Web.Routing;
+﻿using System.Web.Routing;
 using EPiServer.Framework;
 using EPiServer.Framework.Initialization;
 using EPiServer.Web.Routing;
 
-namespace Alloy.Documentation.Business
+namespace DanTuohy.EPiServer.Docs.Business
 {
     [InitializableModule]
-    [ModuleDependency(typeof(EPiServer.Web.InitializationModule))]
+    [ModuleDependency(typeof(global::EPiServer.Web.InitializationModule))]
     public class DocumentationInitialization : IInitializableModule
     {
         public void Initialize(InitializationEngine context)

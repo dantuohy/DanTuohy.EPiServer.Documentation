@@ -213,6 +213,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <None Include="packageTools.targets">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Web.config.install.xdt">
       <SubType>Designer</SubType>
     </None>
@@ -268,10 +271,10 @@
     <!-- Create the Zip file -->
     <ZipDirectory InputPath="$(TmpOutDir)\content" OutputFileName="$(zipFile)" OverwriteExistingFile="true" />
     <!-- Create the package -->
-    <!--<Exec Command="$(NugetCommand)" />-->
+    <Exec Command="$(NugetCommand)" />
     <!-- Cleanup -->
-    <!--<RemoveDir Directories="$(TmpOutDir)" />-->
-    <!--<Delete Files="$(zipFile)" />-->
+    <RemoveDir Directories="$(TmpOutDir)" />
+    <Delete Files="$(zipFile)" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

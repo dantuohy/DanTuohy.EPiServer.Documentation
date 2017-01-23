@@ -1,19 +1,21 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>$id$</id>
-    <version>1.0.0.3</version>
-    <title>$title$</title>
+    <id>DanTuohy.EPiserver.Docs</id>
+    <version>1.0.0.4</version>
+    <title>EPiServer Custom Documentation</title>
     <authors>Dan Tuohy</authors>
-    <owners>$author$</owners>
-    <licenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</licenseUrl>
-    <projectUrl>http://PROJECT_URL_HERE_OR_DELETE_THIS_LINE</projectUrl>
-    <iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>
+    <owners>Dan Tuohy</owners>
+    <projectUrl>http://dantuohy.me</projectUrl>
+    <iconUrl>http://dantuohy.me/favicon-96x96.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>This Generates Docs</description>
-    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
+    <description>This adds documentation to your EPi site to help content editors know and understand how their content templates work</description>
     <copyright>Copyright 2017</copyright>
     <tags>EPiServerModulePackage CMS Documentation EPiServer</tags>
+	<dependencies>
+        <dependency id="EPiServer.CMS.Core" version="8.0" />
+        <dependency id="EPiServer.Framework" version="8.0" />
+      </dependencies>
   </metadata>
 <files>
         <file src="bin\DanTuohy.EPiServer.Docs.dll" target="lib\net45\" />  

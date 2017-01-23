@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel.DataAnnotations;
 using DanTuohy.EPiServer.Docs.Interfaces;
 
-namespace Alloy.Documentation.Business.Attributes
+namespace DanTuohy.EPiServer.Docs.Business.Attributes
 {
+    /// <summary>
+    /// Regualr expression attribute that extends <see cref="IDocumentable"></see>/>
+    /// </summary>
     public class DocumentableRegularExpressionAttribute : RegularExpressionAttribute, IDocumentable
     {
         public DocumentableRegularExpressionAttribute(string pattern, string name, string value) : base(pattern)

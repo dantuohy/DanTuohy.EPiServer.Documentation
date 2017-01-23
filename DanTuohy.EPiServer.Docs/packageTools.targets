@@ -3,17 +3,17 @@
 
   <PropertyGroup>
     <SolutionDir Condition="$(SolutionDir) == ''">$(MSBuildProjectDirectory)\..\</SolutionDir>
-    <NuGetExe>$(SolutionDir)\.nuget\NuGet.exe</NuGetExe>
+    <NuGetExe>$(SolutionDir)NuGet\nuget.exe</NuGetExe>
     <TmpOutDir>$(SolutionDir)\tmp</TmpOutDir>
-    <NuspecFile>$(ProjectDir)\$(ProjectName).nuspec</NuspecFile>
+    <NuspecFile>$(ProjectDir)$(ProjectName).nuspec</NuspecFile>
     <PackageOutDir>$(SolutionDir)</PackageOutDir>
   </PropertyGroup>
 
-  <!--<PropertyGroup>
+  <PropertyGroup>
     <NugetCommand>
-      "$(NuGetExe)" pack "$(NuspecFile)" -OutputDirectory "$(PackageOutDir.TrimEnd('\\'))" -Version $(PackageVersion) -Properties Configuration=$(Configuration)
+      "$(NuGetExe)" pack "$(NuspecFile)" -OutputDirectory "$(PackageOutDir.TrimEnd('\\'))" <!---Version $(OutputAssemblyInfo.Version) -Properties Configuration=$(Configuration)-->
     </NugetCommand>
-  </PropertyGroup>-->
+  </PropertyGroup>
 
   <UsingTask TaskName="ZipDirectory" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll">
     <ParameterGroup>
