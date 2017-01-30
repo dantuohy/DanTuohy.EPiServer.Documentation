@@ -1,10 +1,9 @@
-﻿
-using DanTuohy.EPiServer.Docs.Interfaces;
-using DanTuohy.EPiServer.Docs.Models;
-using EPiServer.DataAbstraction;
+﻿using EPiServer.DataAbstraction;
 using EPiServer.ServiceLocation;
+using Tuohy.Epi.Docs.Interfaces;
+using Tuohy.Epi.Docs.Models;
 
-namespace DanTuohy.EPiServer.Docs.Mapping
+namespace Tuohy.Epi.Docs.Mapping
 {
     [ServiceConfiguration(ServiceType = typeof(IMapToNew<ContentType, BlockDoc>))]
     public class BlockMapper : IMapToNew<ContentType, BlockDoc>

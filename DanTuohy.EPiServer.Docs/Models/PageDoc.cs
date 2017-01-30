@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace DanTuohy.EPiServer.Docs.Models
+namespace Tuohy.Epi.Docs.Models
 {
     public class PageDoc : ContentTypeDoc
     {

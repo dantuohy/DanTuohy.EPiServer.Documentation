@@ -8,10 +8,10 @@ using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.Framework.DataAnnotations;
 using EPiServer.ServiceLocation;
-using DanTuohy.EPiServer.Docs.Interfaces;
-using DanTuohy.EPiServer.Docs.Models;
+using Tuohy.Epi.Docs.Interfaces;
+using Tuohy.Epi.Docs.Models;
 
-namespace DanTuohy.EPiServer.Docs.Services
+namespace Tuohy.Epi.Docs.Services
 {
     [ServiceConfiguration(ServiceType = typeof(IContentTypeService))]
     public class ContentTypeService : IContentTypeService

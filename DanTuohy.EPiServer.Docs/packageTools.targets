@@ -4,7 +4,7 @@
   <PropertyGroup>
     <SolutionDir Condition="$(SolutionDir) == ''">$(MSBuildProjectDirectory)\..\</SolutionDir>
     <NuGetExe>$(SolutionDir)NuGet\nuget.exe</NuGetExe>
-    <TmpOutDir>$(SolutionDir)\tmp</TmpOutDir>
+    <TmpOutDir>$(ProjectDir)\tmp</TmpOutDir>
     <NuspecFile>$(ProjectDir)$(ProjectName).nuspec</NuspecFile>
     <PackageOutDir>$(SolutionDir)</PackageOutDir>
   </PropertyGroup>

@@ -1,4 +1,4 @@
-﻿namespace DanTuohy.EPiServer.Docs.Interfaces
+﻿namespace Tuohy.Epi.Docs.Interfaces
 {
     /// <summary>
     /// Add this to EPiServer property attributes to allow documentation to be generated for

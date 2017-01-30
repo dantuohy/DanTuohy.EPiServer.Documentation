@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using DanTuohy.EPiServer.Docs.Interfaces;
+using Tuohy.Epi.Docs.Interfaces;
 
-namespace DanTuohy.EPiServer.Docs.Business.Attributes
+namespace Tuohy.Epi.Docs.Business.Attributes
 {
     /// <summary>
     /// Regualr expression attribute that extends <see cref="IDocumentable"></see>/>

@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using EPiServer.DataAbstraction;
-using DanTuohy.EPiServer.Docs.Models;
+using Tuohy.Epi.Docs.Models;
 
-namespace DanTuohy.EPiServer.Docs.Interfaces
+namespace Tuohy.Epi.Docs.Interfaces
 {
     public interface IContentTypeService
     {

@@ -1,4 +1,4 @@
-﻿namespace DanTuohy.EPiServer.Docs.Interfaces
+﻿namespace Tuohy.Epi.Docs.Interfaces
 {
     /// <summary>
     /// Interface for mappers that maps a source of <typeparamref name="TSource"/> to a new <typeparamref name="TTarget"/>.
