@@ -1,0 +1,28 @@
+﻿@using EPiServer.Core
+@using EPiServer.Shell
+@using EPiServer.Web.Mvc.Html
+@using Tuohy.Epi.Docs.Controllers
+@model Tuohy.Epi.Docs.Models.ViewModels.DocumentationSettingsViewModel
+
+<div class="settings">
+    @using (Html.BeginForm("Save", "DocumentationSettings"))
+    {
+        <div>
+            @Html.LabelFor(x => Model.Logo)
+            @Html.TextBoxFor(x => Model.Logo)
+        </div>
+        <div>
+            @Html.LabelFor(x => Model.PrimaryColour)
+            @Html.TextBoxFor(x => Model.PrimaryColour)
+        </div>
+        <div>
+            @Html.LabelFor(x => Model.SecondaryColour)
+            @Html.TextBoxFor(x => Model.SecondaryColour)
+        </div>
+        <div>
+            @Html.LabelFor(x => Model.TextColour)
+            @Html.TextBoxFor(x => Model.TextColour)
+        </div>
+        <input type="submit" value="Save" />
+    }
+</div>

@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Tuohy.Epi.Docs</id>
-    <version>1.0.0.39</version>
+    <version>1.0.0.49</version>
     <title>EPiServer Custom Documentation</title>
     <authors>Dan Tuohy</authors>
     <owners>Dan Tuohy</owners>
@@ -13,8 +13,8 @@
     <copyright>Copyright 2017</copyright>
     <tags>CMS Documentation EPiServer</tags>
 	<dependencies>
-        <dependency id="EPiServer.CMS.Core" version="9.0" />
-        <dependency id="EPiServer.Framework" version="9.0" />
+        <dependency id="EPiServer.CMS.Core" version="8.0" />
+        <dependency id="EPiServer.Framework" version="8.0" />
       </dependencies>
   </metadata>
 	<files>
@@ -22,6 +22,6 @@
         <file src="Views\**\*.*" target="content\modules\Tuohy.Epi.Docs\Views\" />
 		<file src="ClientResources\**\*.*" target="content\modules\Tuohy.Epi.Docs\ClientResources\" />
 		<file src="module.config" target="content\modules\Tuohy.Epi.Docs\" />
-		<file src="Web.config" target="content\modules\Tuohy.Epi.Docs\" />
+		<!--<file src="Web.config" target="content\modules\Tuohy.Epi.Docs\" />-->
     </files>
 </package>

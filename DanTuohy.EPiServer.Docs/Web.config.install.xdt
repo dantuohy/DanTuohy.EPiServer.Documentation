@@ -2,7 +2,7 @@
 <configuration xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
   <episerver.shell>
     <protectedModules>
-      <add name="DanTuohy.EPiServer.Docs" xdt:Transform="InsertIfMissing" />
+      <add name="Tuohy.Epi.Docs" xdt:Transform="InsertIfMissing" />
     </protectedModules>
   </episerver.shell>
 </configuration>

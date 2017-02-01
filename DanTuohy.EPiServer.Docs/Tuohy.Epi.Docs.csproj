@@ -202,26 +202,37 @@
     <Compile Include="Business\Attributes\DocumentableRegularExpressionAttribute.cs" />
     <Compile Include="Business\DocumantationMenuItem.cs" />
     <Compile Include="Business\DocumentationInitialization.cs" />
-    <Compile Include="Controllers\DocsSettingsController.cs" />
+    <Compile Include="Controllers\DocumentationSettingsController.cs" />
     <Compile Include="Controllers\DocumentationController.cs" />
+    <Compile Include="Interfaces\IDocumentationSettingsService.cs" />
     <Compile Include="Interfaces\IContentTypeService.cs" />
     <Compile Include="Interfaces\IDocumentable.cs" />
     <Compile Include="Interfaces\IMapToNew.cs" />
+    <Compile Include="Interfaces\IScheduledJobService.cs" />
+    <Compile Include="Mapping\JobMapper.cs" />
     <Compile Include="Mapping\BlockMapper.cs" />
     <Compile Include="Mapping\MediaMapper.cs" />
     <Compile Include="Mapping\PageMapper.cs" />
     <Compile Include="Mapping\PropertyMapper.cs" />
     <Compile Include="Models\BlockDoc.cs" />
     <Compile Include="Models\ContentTypeDoc.cs" />
+    <Compile Include="Models\DynamicData\DocumentationSettings.cs" />
     <Compile Include="Models\Enums.cs" />
+    <Compile Include="Models\JobDoc.cs" />
     <Compile Include="Models\MediaDoc.cs" />
     <Compile Include="Models\PageDoc.cs" />
     <Compile Include="Models\PropertyDoc.cs" />
+    <Compile Include="Models\ViewModels\JobViewModel.cs" />
+    <Compile Include="Models\ViewModels\ContentTypeViewModel.cs" />
     <Compile Include="Models\ViewModels\DocumentationPageViewModel.cs" />
+    <Compile Include="Models\ViewModels\DocumentationSettingsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ContentTypeService.cs" />
+    <Compile Include="Services\DocumentationSettingsService.cs" />
+    <Compile Include="Services\ScheduledJobService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ClientResources\images\dt-logo.png" />
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -229,9 +240,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ClientResources\css\documentation.css" />
-    <Content Include="ClientResources\images\LOGO.svg" />
     <Content Include="ClientResources\js\documentation.js" />
-    <Content Include="Views\DocsSettings\Index.cshtml" />
+    <Content Include="Views\DocumentationSettings\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\Layouts\_DocumentationLayoutPage.cshtml" />
@@ -240,6 +250,7 @@
       <SubType>Designer</SubType>
     </None>
     <Content Include="Views\web.config" />
+    <Content Include="Views\Documentation\Job.cshtml" />
     <None Include="Web.config.install.xdt">
       <SubType>Designer</SubType>
     </None>
@@ -249,7 +260,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Business\Initialization\" />
-    <Folder Include="Views\DocumentationApi\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

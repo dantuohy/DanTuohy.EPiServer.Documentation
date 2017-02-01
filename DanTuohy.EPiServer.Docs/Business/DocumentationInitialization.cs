@@ -14,7 +14,10 @@ namespace Tuohy.Epi.Docs.Business
         public static void Register(HttpConfiguration config)
         {
             // Attribute routing.
-           
+            //RouteTable.Routes.MapRoute(
+            //    "DocumentationSettings",
+            //    "documenationsettings",
+            //    new { controller = "DocumenationSettings", action = "Index" });
         }
 
         public void Initialize(InitializationEngine context)

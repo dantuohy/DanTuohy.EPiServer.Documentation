@@ -1,6 +1,9 @@
 ﻿body, html {
     height: 100%;
 }
+main {
+    margin-top: -32px;
+}
 
 ul.side-nav.fixed li.logo {
     text-align: center;
@@ -18,10 +21,6 @@ ul.side-nav.fixed li.logo {
     height: 100%;
     pointer-events: none;
 }
-
-    #front-page-logo svg {
-        background-color: white;
-    }
 
 main {
     height: 100%;
@@ -49,9 +48,17 @@ main {
     right: 0;
     margin: auto;
 }
-
+.heading {
+    padding-left: 40px;
+    padding-top: 70px;
+    padding-bottom: 30px;
+}
+.heading h1 {
+    margin: 0 0;
+}
 .doc-container {
     margin: 40px 40px;
+    margin-top: 0;
 }
 
 .collapsible p:first-child {
@@ -71,7 +78,7 @@ main {
     .property .name {
         font-weight: bold;
     }
-
+.collection-item.expanded,
 .collapsible-body > div {
     margin: 0;
     padding: 2rem;
@@ -89,4 +96,9 @@ main {
 
 .expander {
     margin-top: 25px;
+}
+
+
+.settings {
+    
 }
