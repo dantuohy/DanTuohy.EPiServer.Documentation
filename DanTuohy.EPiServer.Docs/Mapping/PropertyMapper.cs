@@ -12,8 +12,8 @@ namespace Tuohy.Epi.Docs.Mapping
         {
             var propertyDoc = new PropertyDoc
             {
-                Name = source.Name,
-                Description = source.HelpText,
+                Name = source.TranslateDisplayName(),
+                Description = source.TranslateDescription(),
                 Type = source.Type.LocalizedName,
                 SortOrder = source.FieldOrder,
                 DefaultValue = source.DefaultValue,

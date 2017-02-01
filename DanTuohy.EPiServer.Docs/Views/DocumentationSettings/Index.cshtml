@@ -4,7 +4,17 @@
 @using Tuohy.Epi.Docs.Controllers
 @model Tuohy.Epi.Docs.Models.ViewModels.DocumentationSettingsViewModel
 
+<style type="text/css">
+    .settings {
+        margin: 40px 40px;
+    }
+
+        .settings div {
+            margin-bottom: 10px;
+        }
+</style>
 <div class="settings">
+    <h1>Documentation Settings</h1>
     @using (Html.BeginForm("Save", "DocumentationSettings"))
     {
         <div>

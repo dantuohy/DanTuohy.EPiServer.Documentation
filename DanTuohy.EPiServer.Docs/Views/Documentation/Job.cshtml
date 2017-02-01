@@ -47,7 +47,7 @@
         </a>
     </li>
     <li class="no-padding">
-        <ul class="collapsible collapsible-accordion primary-colour">
+        <ul class="collapsible collapsible-accordion">
             <li>
                 <a class="collapsible-header">Pages<i class="material-icons">arrow_drop_down</i></a>
                 <div class="collapsible-body">
@@ -110,7 +110,7 @@
                         {
                             foreach (var job in Model.Jobs)
                             {
-                                <li><a class="content-type" href="@Paths.ToResource(typeof(DocumentationController), "documentation/job?id=" + job.Key)">>@job.Value</a></li>
+                                <li><a class="content-type" href="@Paths.ToResource(typeof(DocumentationController), "documentation/job?id=" + job.Key)">@job.Value</a></li>
                             }
                         }
                     </ul>
@@ -120,14 +120,13 @@
     </li>
 </ul>
 <main>
-    <div class="doc-container">
-        @if (Model.FocusedJobDoc != null)
-        {
-            <div class="document">
-                <h1>@Model.FocusedJobDoc.Name</h1>
-                <p class="flow-text">@Model.FocusedJobDoc.Description</p>
-
-            </div>
+    @if (Model.FocusedJobDoc != null)
+    {
+        <div class="heading primary-colour text-colour">
+            <h1>@Model.FocusedJobDoc.Name</h1>
+        </div>
+        <div class="doc-container">
+            <p class="flow-text">@Model.FocusedJobDoc.Description</p>
             <ul class="collection with-header">
                 <li class="collection-header"><h4>Properties</h4></li>
                 <li class="collection-item expanded">
@@ -151,6 +150,6 @@
                     </div>
                 </li>
             </ul>
-        }
-    </div>
+        </div>
+    }
 </main>

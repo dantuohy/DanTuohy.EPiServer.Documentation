@@ -93,12 +93,24 @@ main {
 .right {
     float: right;
 }
-
+.side-nav a {
+    height: 100%;
+    line-height: 20px;
+}
+.side-nav li {
+    line-height: 100%;
+}
+.side-nav.fixed .collapsible li a {
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
 .expander {
     margin-top: 25px;
 }
-
-
-.settings {
-    
+.side-nav.fixed .collapsible-header {
+    padding-top: 14px;
+    padding-bottom: 14px;
+}
+.side-nav li>a>i, .side-nav li>a>[class^="mdi-"], .side-nav li>a>[class*="mdi-"], .side-nav li>a>i.material-icons {
+    height: auto;
 }

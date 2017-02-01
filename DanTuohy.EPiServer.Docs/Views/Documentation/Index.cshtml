@@ -121,17 +121,18 @@
     </li>
 </ul>
 <main>
-    <div class="heading primary-colour text-colour">
-        <h1>@Model.FocusedContentTypeDoc.Name</h1>
-    </div>
     @if (Model.FocusedContentTypeDoc != null)
     {
+        <div class="heading primary-colour text-colour">
+            <h1>@Model.FocusedContentTypeDoc.Name</h1>
+        </div>
+
         <div class="doc-container">
             <div class="document">
                 <p class="flow-text">@Model.FocusedContentTypeDoc.Description</p>
-                @if (Model.FocusedContentTypeDoc.Type == ContentTypeEnum.Media && !string.IsNullOrWhiteSpace(((MediaDoc) Model.FocusedContentTypeDoc).MediaDescriptors))
+                @if (Model.FocusedContentTypeDoc.Type == ContentTypeEnum.Media && !string.IsNullOrWhiteSpace(((MediaDoc)Model.FocusedContentTypeDoc).MediaDescriptors))
                 {
-                    <p class="flow-text">Valid extensions: @(((MediaDoc) Model.FocusedContentTypeDoc).MediaDescriptors)</p>
+                    <p class="flow-text">Valid extensions: @(((MediaDoc)Model.FocusedContentTypeDoc).MediaDescriptors)</p>
                 }
                 <div class="row">
                     <div class="col s11">
@@ -142,65 +143,68 @@
                     </div>
                 </div>
                 <ul class="collapsible" data-collapsible="expandable">
-                    @foreach (var prop in Model.FocusedContentTypeDoc.Properties)
+                    @if (Model.FocusedContentTypeDoc.Properties != null)
                     {
-                        <li>
-                            <div class="collapsible-header">
-                                <span title="Tab" class="badge">@prop.Tab</span>@prop.Name - @prop.Type
-                            </div>
-                            <div class="collapsible-body">
-                                <div>
-                                    @if (!string.IsNullOrWhiteSpace(prop.Description))
-                                    {
-                                        <div class="description">@prop.Description</div>
-                                    }
-                                    @if (!string.IsNullOrWhiteSpace(prop.DefaultValue))
-                                    {
-                                        <div class="property">
-                                            <span class="name">Default Value:</span>
-                                            <span class="value">@prop.DefaultValue</span>
-                                        </div>
-                                    }
-                                    <div class="property">
-                                        <span class="name">Required:</span>
-                                        <span class="value">@prop.IsRequired</span>
-                                    </div>
-                                    <div class="property">
-                                        <span class="name">Searchable:</span>
-                                        <span class="value">@prop.IsSearchable</span>
-                                    </div>
-                                    @if (prop.CustomAttributes != null && prop.CustomAttributes.Count > 0)
-                                    {
-                                        foreach (var attribute in prop.CustomAttributes)
-                                        {
-                                            <span class="property">
-                                                <span class="name">@attribute.Key:</span>
-                                                <span class="value">@attribute.Value</span>
-                                            </span>
-                                        }
-                                    }
-                                    @if (prop.AllowedTypes != null && prop.AllowedTypes.Count > 0)
-                                    {
-                                        <span class="property">
-                                            <span class="name">Allowed types:</span>
-                                            <span class="value content-type-links">
-                                                @foreach (var allowedType in prop.AllowedTypes)
-                                                {
-                                                    if (allowedType.Value == "All")
-                                                    {
-                                                        <span>All</span>
-                                                    }
-                                                    else
-                                                    {
-                                                        <a href="@Paths.ToResource(typeof(DocumentationController), "documentation?id=" + allowedType.Key)">@allowedType.Value</a>
-                                                    }
-                                                }
-                                            </span>
-                                        </span>
-                                    }
-                                </div>
-                            </div>
-                        </li>
+                    foreach (var prop in Model.FocusedContentTypeDoc.Properties)
+                     {
+                         <li>
+                             <div class="collapsible-header">
+                                 <span title="Tab" class="badge">@prop.Tab</span>@prop.Name - @prop.Type
+                             </div>
+                             <div class="collapsible-body">
+                                 <div>
+                                     @if (!string.IsNullOrWhiteSpace(prop.Description))
+                                     {
+                                         <div class="description">@prop.Description</div>
+                                     }
+                                     @if (!string.IsNullOrWhiteSpace(prop.DefaultValue))
+                                     {
+                                         <div class="property">
+                                             <span class="name">Default Value:</span>
+                                             <span class="value">@prop.DefaultValue</span>
+                                         </div>
+                                     }
+                                     <div class="property">
+                                         <span class="name">Required:</span>
+                                         <span class="value">@prop.IsRequired</span>
+                                     </div>
+                                     <div class="property">
+                                         <span class="name">Searchable:</span>
+                                         <span class="value">@prop.IsSearchable</span>
+                                     </div>
+                                     @if (prop.CustomAttributes != null && prop.CustomAttributes.Count > 0)
+                                     {
+                                         foreach (var attribute in prop.CustomAttributes)
+                                         {
+                                             <span class="property">
+                                                 <span class="name">@attribute.Key:</span>
+                                                 <span class="value">@attribute.Value</span>
+                                             </span>
+                                         }
+                                     }
+                                     @if (prop.AllowedTypes != null && prop.AllowedTypes.Count > 0)
+                                     {
+                                         <span class="property">
+                                             <span class="name">Allowed types:</span>
+                                             <span class="value content-type-links">
+                                                 @foreach (var allowedType in prop.AllowedTypes)
+                                                 {
+                                                     if (allowedType.Value == "All")
+                                                     {
+                                                         <span>All</span>
+                                                     }
+                                                     else
+                                                     {
+                                                         <a href="@Paths.ToResource(typeof(DocumentationController), "documentation?id=" + allowedType.Key)">@allowedType.Value</a>
+                                                     }
+                                                 }
+                                             </span>
+                                         </span>
+                                     }
+                                 </div>
+                             </div>
+                         </li>
+                     }
                     }
                 </ul>
                 @if (Model.FocusedContentTypeDoc.Type == ContentTypeEnum.Page)
