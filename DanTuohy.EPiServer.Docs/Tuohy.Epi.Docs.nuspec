@@ -19,9 +19,6 @@
   </metadata>
 	<files>
         <file src="bin\Tuohy.Epi.Docs.dll" target="lib\net45\" />  
-        <file src="Views\**\*.*" target="content\modules\Tuohy.Epi.Docs\Views\" />
-		<file src="ClientResources\**\*.*" target="content\modules\Tuohy.Epi.Docs\ClientResources\" />
-		<file src="module.config" target="content\modules\Tuohy.Epi.Docs\" />
-		<!--<file src="Web.config" target="content\modules\Tuohy.Epi.Docs\" />-->
+        <file src="Content\**\*.*" target="content\modules\Tuohy.Epi.Docs\" />
     </files>
 </package>
