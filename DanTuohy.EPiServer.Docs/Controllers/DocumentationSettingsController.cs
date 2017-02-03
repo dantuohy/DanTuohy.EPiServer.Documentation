@@ -26,7 +26,8 @@ namespace Tuohy.Epi.Docs.Controllers
                 Logo = settings.LogoUrl,
                 PrimaryColour = settings.PriamryColour,
                 SecondaryColour = settings.SecondaryColour,
-                TextColour = settings.TextColour
+                TextColour = settings.TextColour,
+                IncludeJobs = settings.IncludeJobs
             });
         }
 
@@ -39,7 +40,8 @@ namespace Tuohy.Epi.Docs.Controllers
                     LogoUrl = model.Logo,
                     PriamryColour = model.PrimaryColour,
                     SecondaryColour = model.SecondaryColour,
-                    TextColour = model.TextColour
+                    TextColour = model.TextColour,
+                    IncludeJobs = model.IncludeJobs
                 });
             }
 
