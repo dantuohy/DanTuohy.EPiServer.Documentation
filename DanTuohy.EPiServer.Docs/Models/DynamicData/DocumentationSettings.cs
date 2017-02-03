@@ -14,5 +14,6 @@ namespace Tuohy.Epi.Docs.Models.DynamicData
         public string PriamryColour { get; set; }
         public string SecondaryColour { get; set; }
         public string TextColour { get; set; }
+        public bool IncludeJobs { get; set; }
     }
 }

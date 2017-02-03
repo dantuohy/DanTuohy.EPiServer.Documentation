@@ -33,6 +33,10 @@
             @Html.LabelFor(x => Model.TextColour)
             @Html.TextBoxFor(x => Model.TextColour)
         </div>
+        <div>
+            @Html.LabelFor(x => Model.IncludeJobs)
+            @Html.CheckBoxFor(x => Model.IncludeJobs)
+        </div>
         <input type="submit" value="Save" />
     }
 </div>

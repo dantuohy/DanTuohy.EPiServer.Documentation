@@ -36,9 +36,9 @@ namespace Tuohy.Epi.Docs.Controllers
             {
                 Pages = _contentTypeService.GetAllPages().ToDictionary(x => x.ID, x => x.LocalizedFullName),
                 Blocks = _contentTypeService.GetAllBlocks().ToDictionary(x => x.ID, x => x.LocalizedFullName),
-                Media = _contentTypeService.GetAllMedia().ToDictionary(x => x.ID, x => x.LocalizedFullName),
-                Jobs = _jobService.ListAll()
+                Media = _contentTypeService.GetAllMedia().ToDictionary(x => x.ID, x => x.LocalizedFullName)
             };
+
             int id;
             if (!string.IsNullOrWhiteSpace(idString) && int.TryParse(idString, out id))
             {
@@ -64,6 +64,10 @@ namespace Tuohy.Epi.Docs.Controllers
                     SecondaryColour = settings.SecondaryColour,
                     TextColour = settings.TextColour
                 };
+                if (settings.IncludeJobs)
+                {
+                    model.Jobs = _jobService.ListAll();
+                }
             }
 
             return View(Paths.ToResource(GetType(), "Views/Documentation/index.cshtml"), model);
@@ -92,7 +96,12 @@ namespace Tuohy.Epi.Docs.Controllers
                     SecondaryColour = settings.SecondaryColour,
                     TextColour = settings.TextColour
                 };
+                if (!settings.IncludeJobs)
+                {
+                    return RedirectToAction("Index");
+                }
             }
+
             Guid id;
             if (!string.IsNullOrWhiteSpace(idString) && Guid.TryParse(idString, out id))
             {
