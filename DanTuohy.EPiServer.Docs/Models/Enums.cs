@@ -2,8 +2,10 @@
 {
     public enum ContentTypeEnum
     {
+        None,
         Page,
         Block,
-        Media
+        Media,
+        Job
     }
 }

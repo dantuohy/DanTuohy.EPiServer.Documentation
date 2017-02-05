@@ -4,129 +4,35 @@
 @{
     Layout = "~/modules/Tuohy.Epi.Docs/Views/Shared/Layouts/_DocumentationLayoutPage.cshtml";
 }
-@{
-    var logoUrl = Model.PageDesign != null && !string.IsNullOrWhiteSpace(Model.PageDesign.LogoUrl)
-            ? Model.PageDesign.LogoUrl :
-            Paths.ToClientResource(typeof(DocumentationController), "ClientResources/images/dt-logo.png");
-    if (Model.PageDesign != null)
-    {
-        if (!string.IsNullOrWhiteSpace(Model.PageDesign.PriamryColour))
-        {
-            <style type="text/css">
-                .primary-colour {
-                    background-color: @Model.PageDesign.PriamryColour
-                }
-            </style>
-        }
-        if (!string.IsNullOrWhiteSpace(Model.PageDesign.SecondaryColour))
-        {
-            <style type="text/css">
-                .secondary-colour {
-                    background-color: @Model.PageDesign.SecondaryColour
-                }
-                .heading {
-                    border-bottom: 5px solid @Model.PageDesign.SecondaryColour;
-                }
-            </style>
-        }
-        if (!string.IsNullOrWhiteSpace(Model.PageDesign.TextColour))
-        {
-            <style type="text/css">
-                .text-colour *{
-                    color: @Model.PageDesign.TextColour
-                }
-            </style>
-        }
-    }
-}
-
-<ul id="slide-out" class="side-nav fixed content-types">
-    <li class="logo">
-        <a id="logo-container" href="." class="brand-logo">
-            <img id="front-page-logo" src="@logoUrl" alt="Logo" />
-        </a>
-    </li>
-    <li class="no-padding">
-        <ul class="collapsible collapsible-accordion">
-            <li>
-                <a class="collapsible-header">Pages<i class="material-icons">arrow_drop_down</i></a>
-                <div class="collapsible-body">
-                    <ul>
-                        @if (Model.Pages != null)
-                        {
-                            foreach (var page in Model.Pages)
-                            {
-                                <li><a class="content-type" href="@Paths.ToResource(typeof(DocumentationController), "documentation?id=" + page.Key)">@page.Value</a></li>
-                            }
-                        }
-                    </ul>
-                </div>
-            </li>
-        </ul>
-    </li>
-    <li class="no-padding">
-        <ul class="collapsible collapsible-accordion">
-            <li>
-                <a class="collapsible-header">Blocks<i class="material-icons">arrow_drop_down</i></a>
-                <div class="collapsible-body">
-                    <ul>
-                        @if (Model.Blocks != null)
-                        {
-                            foreach (var block in Model.Blocks)
-                            {
-                                <li><a class="content-type" href="@Paths.ToResource(typeof(DocumentationController), "documentation?id=" + block.Key)">@block.Value</a></li>
-                            }
-                        }
-                    </ul>
-                </div>
-            </li>
-        </ul>
-    </li>
-    <li class="no-padding">
-        <ul class="collapsible collapsible-accordion">
-            <li>
-                <a class="collapsible-header">Media<i class="material-icons">arrow_drop_down</i></a>
-                <div class="collapsible-body">
-                    <ul>
-                        @if (Model.Media != null)
-                        {
-                            foreach (var media in Model.Media)
-                            {
-                                <li><a class="content-type" href="@Paths.ToResource(typeof(DocumentationController), "documentation?id=" + media.Key)">@media.Value</a></li>
-                            }
-                        }
-                    </ul>
-                </div>
-            </li>
-        </ul>
-    </li>
-    <li class="no-padding">
-        <ul class="collapsible collapsible-accordion">
-            <li>
-                <a class="collapsible-header">Jobs<i class="material-icons">arrow_drop_down</i></a>
-                <div class="collapsible-body">
-                    <ul>
-                        @if (Model.Jobs != null)
-                        {
-                            foreach (var job in Model.Jobs)
-                            {
-                                <li><a class="content-type" href="@Paths.ToResource(typeof(DocumentationController), "documentation/job?id=" + job.Key)">@job.Value</a></li>
-                            }
-                        }
-                    </ul>
-                </div>
-            </li>
-        </ul>
-    </li>
-</ul>
 <main>
     @if (Model.FocusedJobDoc != null)
     {
         <div class="heading primary-colour text-colour">
             <h1>@Model.FocusedJobDoc.Name</h1>
+            @if (Model.CanEdit)
+            {
+                if (!Model.IsEditMode)
+                {
+                    <a class="btn-floating btn-large right secondary-colour text-colour" href="@Paths.ToResource(typeof(DocumentationController), "documentation?edit=1&ctid=" + Model.FocusedContentTypeId)"><i class="small material-icons">mode_edit</i></a>
+                }
+            }
         </div>
         <div class="doc-container">
             <p class="flow-text">@Model.FocusedJobDoc.Description</p>
+            @if (Model.IsEditMode)
+                {
+                <form action="@Url.Action("Save", "Documentation")">
+                    <input type="hidden" name="contentTypeId" id="contentTypeId" value="@Model.FocusedContentTypeDoc.Id" />
+                    <textarea name="markup" id="markup">@Html.Raw(Model.CustomDocumentation)</textarea>
+                    <button class="btn-floating btn-large right secondary-colour text-colour"><i class="material-icons small">done</i></button>
+                </form>
+            }
+            else
+            {
+                <div class="custom-documentation">
+                    @Html.Raw(Model.CustomDocumentation)
+                </div>
+            }
             <ul class="collection with-header">
                 <li class="collection-header"><h4>Properties</h4></li>
                 <li class="collection-item expanded">

@@ -12,6 +12,7 @@ namespace Tuohy.Epi.Docs.Mapping
         {
             var jobDoc = new JobDoc
             {
+                Id = source.ID,
                 Name = source.Name,
                 IntervalName = source.IntervalType.ToString(),
                 IntervalLength = source.IntervalLength,

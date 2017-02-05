@@ -37,6 +37,10 @@
             @Html.LabelFor(x => Model.IncludeJobs)
             @Html.CheckBoxFor(x => Model.IncludeJobs)
         </div>
+        <div>
+            @Html.LabelFor(x => Model.AllowEditing)
+            @Html.CheckBoxFor(x => Model.AllowEditing)
+        </div>
         <input type="submit" value="Save" />
     }
 </div>

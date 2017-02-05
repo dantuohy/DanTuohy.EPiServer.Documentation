@@ -18,5 +18,8 @@ namespace Tuohy.Epi.Docs.Models.ViewModels
 
         [Display(Name = "Include Scheduled Jobs?")]
         public bool IncludeJobs { get; set; }
+
+        [Display(Name = "Allow Custom Editing?")]
+        public bool AllowEditing { get; set; }
     }
 }

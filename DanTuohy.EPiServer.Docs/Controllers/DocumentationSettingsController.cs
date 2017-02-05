@@ -4,6 +4,7 @@ using EPiServer.Shell;
 using Tuohy.Epi.Docs.Interfaces;
 using Tuohy.Epi.Docs.Models.DynamicData;
 using Tuohy.Epi.Docs.Models.ViewModels;
+using EPiServer.ServiceLocation;
 
 namespace Tuohy.Epi.Docs.Controllers
 {
@@ -11,14 +12,11 @@ namespace Tuohy.Epi.Docs.Controllers
     [Authorize(Roles = "CmsAdmins")]
     public class DocumentationSettingsController : Controller
     {
-        private readonly IDocumentationSettingsService _settingsService;
-        public DocumentationSettingsController(IDocumentationSettingsService settingsService)
-        {
-            _settingsService = settingsService;
-        }
+        private readonly Injected<IDocumentationSettingsService> _settingsService;
+
         public ActionResult Index()
         {
-            var settings = _settingsService.GetSettings();
+            var settings = _settingsService.Service.GetSettings();
 
             return View(Paths.ToResource(GetType(), "Views/DocumentationSettings/index.cshtml"),
             settings == null ? new DocumentationSettingsViewModel() : new DocumentationSettingsViewModel
@@ -27,7 +25,8 @@ namespace Tuohy.Epi.Docs.Controllers
                 PrimaryColour = settings.PriamryColour,
                 SecondaryColour = settings.SecondaryColour,
                 TextColour = settings.TextColour,
-                IncludeJobs = settings.IncludeJobs
+                IncludeJobs = settings.IncludeJobs,
+                AllowEditing = settings.AllowEditing
             });
         }
 
@@ -35,13 +34,14 @@ namespace Tuohy.Epi.Docs.Controllers
         {
             if (ModelState.IsValid)
             {
-                _settingsService.UpdrtSettings(new DocumentationSettings
+                _settingsService.Service.UpdrtSettings(new DocumentationSettings
                 {
                     LogoUrl = model.Logo,
                     PriamryColour = model.PrimaryColour,
                     SecondaryColour = model.SecondaryColour,
                     TextColour = model.TextColour,
-                    IncludeJobs = model.IncludeJobs
+                    IncludeJobs = model.IncludeJobs,
+                    AllowEditing = model.AllowEditing
                 });
             }
 

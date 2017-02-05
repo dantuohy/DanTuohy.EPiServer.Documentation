@@ -13,13 +13,13 @@ namespace Tuohy.Epi.Docs.Services
         public Identity UpdrtSettings(DocumentationSettings settings)
         {
             var store = DynamicDataStoreFactory.Instance.CreateStore(typeof(DocumentationSettings));
-            var setting = GetSettings();
-            if (setting == null)
+            var oldSetting = GetSettings();
+            if (oldSetting == null)
             {
                 return store.Save(settings);
 
             }
-            settings.Id = setting.Id;
+            settings.Id = oldSetting.Id;
 
             return store.Save(settings);
         }

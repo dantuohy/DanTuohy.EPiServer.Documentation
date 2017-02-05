@@ -3,5 +3,17 @@
     public class ContentTypeViewModel : DocumentationPageViewModel
     {
         public ContentTypeDoc FocusedContentTypeDoc { get; set; }
+
+        public string CustomDocumentation { get; set; }
+
+        public ContentTypeViewModel(ContentTypeDoc focusedContentTypeDoc)
+        {
+            FocusedContentTypeDoc = focusedContentTypeDoc;
+            if (focusedContentTypeDoc != null)
+            {
+                FocusedContentTypeType = focusedContentTypeDoc.Type;
+                FocusedContentTypeId = focusedContentTypeDoc.Id.ToString();
+            }
+        }
     }
 }

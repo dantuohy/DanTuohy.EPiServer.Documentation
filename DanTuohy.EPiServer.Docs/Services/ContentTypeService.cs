@@ -61,7 +61,7 @@ namespace Tuohy.Epi.Docs.Services
                 var avaliablePages = GetAvaliablePages(contentType);
                 pageDoc.AvaliablePages = avaliablePages == null ? null : avaliablePages.ToDictionary(x => x.ID.ToString(), x => x.LocalizedFullName);
 
-                pageDoc.Access = contentType.ACL.ToDictionary(x => x.Value.Name, x => x.Value.Access.ToString());
+              //  pageDoc.Access = contentType.ACL.ToDictionary(x => x.Value.Name, x => x.Value.Access.ToString());
                 return pageDoc;
             }
             if (contentType.ModelType.IsSubclassOf(typeof(BlockData)))

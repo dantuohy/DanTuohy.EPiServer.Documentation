@@ -1,6 +1,7 @@
 ﻿body, html {
     height: 100%;
 }
+
 main {
     margin-top: -32px;
 }
@@ -48,18 +49,38 @@ main {
     right: 0;
     margin: auto;
 }
+
 .heading {
     padding-left: 40px;
     padding-top: 70px;
     padding-bottom: 30px;
+    display: inline-block;
+    width: 100%;
 }
-.heading h1 {
-    margin: 0 0;
-}
+
+    .heading h1 {
+        margin: 0 0;
+        float: left;
+    }
+
+    .heading a {
+        
+        margin-right: 40px;
+    }
+
 .doc-container {
     margin: 40px 40px;
     margin-top: 0;
 }
+
+    .doc-container .document form {
+        display: inline-block;
+        width: 100%;
+    }
+
+        .doc-container .document form button {
+            margin-top: 20px;
+        }
 
 .collapsible p:first-child {
     padding-bottom: 5px;
@@ -78,6 +99,7 @@ main {
     .property .name {
         font-weight: bold;
     }
+
 .collection-item.expanded,
 .collapsible-body > div {
     margin: 0;
@@ -93,24 +115,43 @@ main {
 .right {
     float: right;
 }
+
 .side-nav a {
     height: 100%;
     line-height: 20px;
 }
+
 .side-nav li {
     line-height: 100%;
 }
+
 .side-nav.fixed .collapsible li a {
     padding-top: 12px;
     padding-bottom: 12px;
 }
+
 .expander {
     margin-top: 25px;
 }
+
 .side-nav.fixed .collapsible-header {
     padding-top: 14px;
     padding-bottom: 14px;
 }
-.side-nav li>a>i, .side-nav li>a>[class^="mdi-"], .side-nav li>a>[class*="mdi-"], .side-nav li>a>i.material-icons {
+
+.side-nav li > a > i, .side-nav li > a > [class^="mdi-"], .side-nav li > a > [class*="mdi-"], .side-nav li > a > i.material-icons {
     height: auto;
+}
+.side-nav .collapsible-body>ul:not(.collapsible)>li.active, .side-nav.fixed .collapsible-body>ul:not(.collapsible)>li.active{
+    background-color: rgba(0,0,0,0.05);
+}
+.side-nav .collapsible-body>ul:not(.collapsible)>li.active, .side-nav.fixed .collapsible-body>ul:not(.collapsible)>li.active a{
+    color: inherit;
+}
+.btn-floating {
+    background-color:#F44336;
+}
+.btn-large:hover,
+.btn-floating:hover{
+    background-color:#F44336;
 }

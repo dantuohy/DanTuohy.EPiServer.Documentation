@@ -1,7 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using EPiServer.Core;
 using EPiServer.DataAnnotations;
-using EPiServer.Shell.ObjectEditing;
 using EPiServer.Web;
 using EPiServer;
 
@@ -20,7 +19,7 @@ namespace Alloy8.Models.Blocks
         /// Gets the site logotype URL
         /// </summary>
         /// <remarks>If not specified a default logotype will be used</remarks>
-        [DefaultDragAndDropTarget]
+     //   [DefaultDragAndDropTarget]
         [UIHint(UIHint.Image)]
         public virtual Url Url
         {

@@ -1,0 +1,46 @@
+﻿@using EPiServer.Core
+@using EPiServer.Shell
+@using EPiServer.Web.Mvc.Html
+@using Tuohy.Epi.Docs.Controllers
+@model Tuohy.Epi.Docs.Models.ViewModels.DocumentationSettingsViewModel
+
+<style type="text/css">
+    .settings {
+        margin: 40px 40px;
+    }
+
+        .settings div {
+            margin-bottom: 10px;
+        }
+</style>
+<div class="settings">
+    <h1>Documentation Settings</h1>
+    @using (Html.BeginForm("Save", "DocumentationSettings"))
+    {
+        <div>
+            @Html.LabelFor(x => Model.Logo)
+            @Html.TextBoxFor(x => Model.Logo)
+        </div>
+        <div>
+            @Html.LabelFor(x => Model.PrimaryColour)
+            @Html.TextBoxFor(x => Model.PrimaryColour)
+        </div>
+        <div>
+            @Html.LabelFor(x => Model.SecondaryColour)
+            @Html.TextBoxFor(x => Model.SecondaryColour)
+        </div>
+        <div>
+            @Html.LabelFor(x => Model.TextColour)
+            @Html.TextBoxFor(x => Model.TextColour)
+        </div>
+        <div>
+            @Html.LabelFor(x => Model.IncludeJobs)
+            @Html.CheckBoxFor(x => Model.IncludeJobs)
+        </div>
+        <div>
+            @Html.LabelFor(x => Model.AllowEditing)
+            @Html.CheckBoxFor(x => Model.AllowEditing)
+        </div>
+        <input type="submit" value="Save" />
+    }
+</div>

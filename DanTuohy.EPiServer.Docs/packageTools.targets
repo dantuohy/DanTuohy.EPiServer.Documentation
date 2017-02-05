@@ -32,8 +32,9 @@
       <_CopyItems Include="$(ProjectDir)Content\**\*.*" />
     </ItemGroup>
     <Copy SourceFiles="@(_CopyItems)" DestinationFolder="$(SolutionDir)Test8\modules\Tuohy.Epi.Docs\%(RecursiveDir)" />
-    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(SolutionDir)Test8\modules" />
-    <Copy SourceFiles="$(ProjectDir)obj\debug\Tuohy.Epi.Docs.dll" DestinationFolder="$(SolutionDir)Test8\bin" />
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(SolutionDir)Test8\bin" />
+    <Copy SourceFiles="@(_CopyItems)" DestinationFolder="$(SolutionDir)Test9\modules\Tuohy.Epi.Docs\%(RecursiveDir)" />
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(SolutionDir)Test9\bin" />
   </Target>
   <PropertyGroup>
     <NugetCommand>

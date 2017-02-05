@@ -1,8 +1,5 @@
-﻿using System.IO;
-using EPiServer.Core;
-using EPiServer.Data;
+﻿using EPiServer.Data;
 using EPiServer.Data.Dynamic;
-using EPiServer.DynamicContent;
 
 namespace Tuohy.Epi.Docs.Models.DynamicData
 {
@@ -15,5 +12,11 @@ namespace Tuohy.Epi.Docs.Models.DynamicData
         public string SecondaryColour { get; set; }
         public string TextColour { get; set; }
         public bool IncludeJobs { get; set; }
+        public bool AllowEditing { get; set; }
+
+        public DocumentationSettings()
+        {
+            Id = Identity.NewIdentity();
+        }
     }
 }

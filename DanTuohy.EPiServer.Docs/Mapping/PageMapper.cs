@@ -12,8 +12,9 @@ namespace Tuohy.Epi.Docs.Mapping
         {
             var pageDoc = new PageDoc
             {
+                Id = source.ID,
                 Type = ContentTypeEnum.Page,
-                Name = source.LocalizedFullName,
+                Name = source.LocalizedName,
                 Description = source.LocalizedDescription,
                 Group = source.LocalizedGroupName,
                 SortOrder = source.SortOrder,

@@ -12,8 +12,9 @@ namespace Tuohy.Epi.Docs.Mapping
         {
             var blockDoc = new BlockDoc
             {
+                Id = source.ID,
                 Type = ContentTypeEnum.Block,
-                Name = source.LocalizedFullName,
+                Name = source.LocalizedName,
                 Description = source.LocalizedDescription,
                 Group = source.LocalizedGroupName,
                 SortOrder = source.SortOrder,
