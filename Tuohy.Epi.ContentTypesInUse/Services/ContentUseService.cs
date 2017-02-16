@@ -8,6 +8,9 @@ using EPiServer.ServiceLocation;
 using EPiServer.Web.Routing;
 using Tuohy.Epi.ContentTypesInUse.Interfaces;
 using Tuohy.Epi.ContentTypesInUse.Models;
+using System.Text;
+using EPiServer.Web;
+using EPiServer.Globalization;
 
 namespace Tuohy.Epi.ContentTypesInUse.Services
 {
@@ -58,47 +61,47 @@ namespace Tuohy.Epi.ContentTypesInUse.Services
 
             var usages = _contentModalUsageRepository.ListContentOfContentType(contentType).Select(y => y.ContentLink.ToReferenceWithoutVersion()).Distinct().OrderByDescending(x => x.ID).Skip(pageNumber * pageSize).Take(pageSize);
 
-            if (isBlockType)
-            {
-                var list = new List<LinkViewModel>();
-                foreach (var usage in usages)
-                {
-                    //Check if this usage is as a property on a page type
-                    var useageContent = _contentRepository.Get<IContent>(usage);
-                    if (useageContent is PageData)
-                    {
-                        list.Add(new LinkViewModel(PageEditing.GetEditUrl(useageContent.ContentLink), GetExternalUrl(useageContent.ContentLink)));
-                        continue;
-                    }
+            //if (isBlockType)
+            //{
+            //    var list = new List<LinkViewModel>();
+            //    foreach (var usage in usages)
+            //    {
+            //        //Check if this usage is as a property on a page type
+            //        var useageContent = _contentRepository.Get<IContent>(usage);
+            //        if (useageContent is PageData)
+            //        {
+            //            list.Add(new LinkViewModel(PageEditing.GetEditUrl(useageContent.ContentLink), useageContent.Name));
+            //            continue;
+            //        }
 
-                    //todo refactor
-                    var reference = _contentRepository.GetReferencesToContent(usage, false).FirstOrDefault();
-                    if (reference == null)
-                    {
-                        list.Add(new LinkViewModel(PageEditing.GetEditUrl(usage), "Not on page"));
-                        continue;
-                    }
+            //        //todo refactor
+            //        var reference = _contentRepository.GetReferencesToContent(usage, false).FirstOrDefault();
+            //        if (reference == null)
+            //        {
+            //            list.Add(new LinkViewModel(PageEditing.GetEditUrl(usage), ));
+            //            continue;
+            //        }
 
-                    var content = _contentRepository.Get<IContent>(reference.OwnerID);
-                    while (!(content is PageData))
-                    {
-                        reference = _contentRepository.GetReferencesToContent(content.ContentLink, false).FirstOrDefault();
-                        if (reference == null)
-                        {
-                            list.Add(new LinkViewModel(PageEditing.GetEditUrl(usage), "Not on page"));
-                            break;
-                        }
-                        content = _contentRepository.Get<IContent>(reference.OwnerID);
-                    }
+            //        var content = _contentRepository.Get<IContent>(reference.OwnerID);
+            //        while (!(content is PageData))
+            //        {
+            //            reference = _contentRepository.GetReferencesToContent(content.ContentLink, false).FirstOrDefault();
+            //            if (reference == null)
+            //            {
+            //                list.Add(new LinkViewModel(PageEditing.GetEditUrl(usage), "Not on page"));
+            //                break;
+            //            }
+            //            content = _contentRepository.Get<IContent>(reference.OwnerID);
+            //        }
 
-                    list.Add(new LinkViewModel(PageEditing.GetEditUrl(usage), GetExternalUrl(content.ContentLink)));
+            //        list.Add(new LinkViewModel(PageEditing.GetEditUrl(usage),));
 
-                }
+            //    }
 
-                return list;
-            }
+            //    return list;
+            //}
 
-            return usages.Select(x => new LinkViewModel(PageEditing.GetEditUrl(x), GetExternalUrl(x)));
+            return usages.Select(x => new LinkViewModel(PageEditing.GetEditUrl(x), _contentRepository.Get<IContent>(x).Name));
         }
 
         private IEnumerable<ContentType> GetAllPageTypes()
@@ -109,13 +112,6 @@ namespace Tuohy.Epi.ContentTypesInUse.Services
         private IEnumerable<ContentType> GetAllBlockTypes()
         {
             return _contentTypeRepository.List().Where(x => x.ModelType != null && x.ModelType.IsSubclassOf(typeof(BlockData)));
-        }
-
-        private static string GetExternalUrl(ContentReference contentReference)
-        {
-            var internalUrl = UrlResolver.Current.GetUrl(contentReference);
-
-            return internalUrl;
         }
     }
 }

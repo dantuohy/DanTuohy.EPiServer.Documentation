@@ -1,4 +1,6 @@
-﻿@model Tuohy.Epi.ContentTypesInUse.Models.ContentTypeGroups
+﻿@using EPiServer.Shell
+@using Tuohy.Epi.ContentTypesInUse.Controllers
+@model Tuohy.Epi.ContentTypesInUse.Models.ContentTypeGroups
 @{
     Layout = "";
 }
@@ -10,8 +12,11 @@
             {
                 <li>
                     <div class="content-type">
-                        <a href="#" data-id="@p.ContentTypeId">@p.ContentTypeName</a><span>@p.Count</span>
-                        <div class="container"></div>
+                        @using (Html.BeginGadgetForm("GetLinks"))
+                        {
+                            <input type="hidden" name="id" value="@p.ContentTypeId" /><span>@p.Count</span>
+                            <input type="submit" value="@p.ContentTypeName" />
+                        }
                     </div>
                 </li>
             }
@@ -24,14 +29,14 @@
             {
                 <li>
                     <div class="content-type">
-                        <a href="#" data-id="@p.ContentTypeId">@p.ContentTypeName</a><span>@p.Count</span>
-                        <div class="container"></div>
+                        @using (Html.BeginGadgetForm("GetLinks"))
+                        {
+                            <input type="hidden" name="id" value="@p.ContentTypeId" /><span>@p.Count</span>
+                            <input type="submit" value="@p.ContentTypeName" />
+                        }
                     </div>
                 </li>
             }
         </ul>
     </div>
 </div>
-<script>
-    inUse.init();
-</script>

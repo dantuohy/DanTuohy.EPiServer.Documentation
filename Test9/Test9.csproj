@@ -218,6 +218,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ArticlePageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -263,6 +264,7 @@
     <Content Include="App_Data\GeoLiteCity.dat" />
     <Content Include="modules\Tuohy.Epi.Docs\Tuohy.Epi.Docs.zip" />
     <Content Include="modules\Tuohy.Epi.Docs\Views\web.config" />
+    <Content Include="Views\ArticlePage\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -271,7 +273,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Controllers\" />
     <Folder Include="Models\ViewModels\" />
   </ItemGroup>
   <PropertyGroup>

@@ -2,24 +2,36 @@
     margin-left: 20px;
     margin-right: 20px;
 }
-.in-use{
+
+.in-use {
     margin-top: 0;
 }
-.in-use ul li {
-    padding: 10px 10px;
-}
-.in-use ul li:nth-child(odd) {
-    background-color: #eee;
-}
-.in-use ul li .content-type span{
-    float: right;
-}
-.in-use ul a img {
-    margin-left: 10px;
-    height: 20px;
-    vertical-align: top;
 
-}
-/*.in-use ul li:not([target='_blank']) {
-    text-decoration: underline;
-}*/
+    .in-use ul li {
+        padding: 10px 10px;
+    }
+
+    .in-use input[type="submit"] {
+        border: none;
+        background-color: inherit;
+        cursor: pointer;
+    }
+
+    .in-use ul li:nth-child(odd) {
+        background-color: #eee;
+    }
+
+    .in-use ul li .content-type span {
+        float: right;
+    }
+
+    .in-use ul a img {
+        margin-left: 10px;
+        height: 20px;
+        vertical-align: top;
+    }
+
+    .in-use .paging form {
+        float: left;
+        margin: 10px 10px;
+    }
