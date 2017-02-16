@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Tuohy.Epi.ContentTypesInUse</id>
+    <version>1.0.0.11</version>
+    <title>EPiServer Content Type Usage Information</title>
+    <authors>Dan Tuohy</authors>
+    <owners>Dan Tuohy</owners>
+    <projectUrl>http://dantuohy.me</projectUrl>
+    <iconUrl>http://dantuohy.me/favicon-96x96.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Show a list of all page and block types and how many of each are currently in use on the site. Will also show where in the site these are being used</description>
+    <copyright>Copyright 2017</copyright>
+    <tags>CMS Gadget ContentTypes EPiServer</tags>
+	<dependencies>
+        <dependency id="EPiServer.CMS.Core" version="8.0" />
+        <dependency id="EPiServer.Framework" version="8.0" />
+      </dependencies>
+  </metadata>
+	<files>
+        <file src="bin\Tuohy.Epi.ContentTypesInUse.dll" target="lib\net45\" />  
+        <file src="Content\**\*.*" target="content\modules\Tuohy.Epi.ContentTypesInUse\" />
+    </files>
+</package>
