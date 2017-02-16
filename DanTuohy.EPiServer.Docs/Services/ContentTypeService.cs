@@ -59,7 +59,7 @@ namespace Tuohy.Epi.Docs.Services
                 pageDoc.Properties = contentType.PropertyDefinitions.Select(x => GetProperty(x, contentType.ModelType)).OrderBy(x => x.Tab);
 
                 var avaliablePages = GetAvaliablePages(contentType);
-                pageDoc.AvaliablePages = avaliablePages == null ? null : avaliablePages.ToDictionary(x => x.ID.ToString(), x => x.LocalizedFullName);
+                pageDoc.AvaliablePages = avaliablePages == null ? null : avaliablePages.ToDictionary(x => x.ID.ToString(), x => x.LocalizedName);
 
               //  pageDoc.Access = contentType.ACL.ToDictionary(x => x.Value.Name, x => x.Value.Access.ToString());
                 return pageDoc;
@@ -177,7 +177,7 @@ namespace Tuohy.Epi.Docs.Services
                 {
                     foreach(var type in allowedTypes.AllowedTypes.Select(x => ToContentType(x)).Where(x => x != null))
                     {
-                        allowed.Add(type.ID.ToString(), type.LocalizedFullName);
+                        allowed.Add(type.ID.ToString(), type.LocalizedName);
                     }
               
                 }

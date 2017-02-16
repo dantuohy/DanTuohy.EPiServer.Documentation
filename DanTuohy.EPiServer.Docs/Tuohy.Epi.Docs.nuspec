@@ -1,24 +1,24 @@
 <?xml version="1.0"?>
-<package >
+<package>
   <metadata>
     <id>Tuohy.Epi.Docs</id>
-    <version>1.0.0.51</version>
+    <version>1.0.0.53</version>
     <title>EPiServer Custom Documentation</title>
     <authors>Dan Tuohy</authors>
     <owners>Dan Tuohy</owners>
     <projectUrl>http://dantuohy.me</projectUrl>
-    <iconUrl>http://dantuohy.me/favicon-96x96.png</iconUrl>
+    <iconUrl>http://dantuohy.me/Content/images/favicons/favicon-96x96.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>This adds documentation to your EPi site to help content editors know and understand how their content templates work</description>
     <copyright>Copyright 2017</copyright>
-    <tags>CMS Documentation EPiServer</tags>
-	<dependencies>
-        <dependency id="EPiServer.CMS.Core" version="8.0" />
-        <dependency id="EPiServer.Framework" version="8.0" />
-      </dependencies>
+    <tags>EPiServerModulePackage CMS Documentation EPiServer</tags>
+    <dependencies>
+      <dependency id="EPiServer.CMS.Core" version="8.0" />
+      <dependency id="EPiServer.Framework" version="8.0" />
+    </dependencies>
   </metadata>
-	<files>
-        <file src="bin\Tuohy.Epi.Docs.dll" target="lib\net45\" />  
-        <file src="Content\**\*.*" target="content\modules\Tuohy.Epi.Docs\" />
-    </files>
+  <files>
+    <file src="bin\Tuohy.Epi.Docs.dll" target="lib\net45\" />
+    <file src="Content\**\*.*" target="content\modules\Tuohy.Epi.Docs\" />
+  </files>
 </package>

@@ -184,6 +184,10 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Tuohy.Epi.Docs, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Tuohy.Epi.Docs.1.0.0.53\lib\net45\Tuohy.Epi.Docs.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Web.Razor">
@@ -257,6 +261,8 @@
     <Content Include="modules\_protected\EPiServer.Packaging.UI\web.config" />
     <Content Include="modules\_protected\EPiServer.Packaging.UI\EPiServer.Packaging.UI.zip" />
     <Content Include="App_Data\GeoLiteCity.dat" />
+    <Content Include="modules\Tuohy.Epi.Docs\Tuohy.Epi.Docs.zip" />
+    <Content Include="modules\Tuohy.Epi.Docs\Views\web.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

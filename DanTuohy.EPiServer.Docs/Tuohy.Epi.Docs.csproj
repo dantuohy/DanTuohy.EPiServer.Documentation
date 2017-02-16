@@ -262,7 +262,9 @@
     <None Include="packageTools.targets">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Content\Views\web.config" />
+    <Content Include="Content\Views\web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content\Views\Documentation\Job.cshtml" />
     <None Include="Tuohy.Epi.Docs.nuspec" />
     <None Include="Web.config.install.xdt">
@@ -302,7 +304,7 @@
   </ProjectExtensions>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
-      <zipFile>$(OutDir)\DanTuohy.EPiServer.Docs.zip</zipFile>
+      <zipFile>$(OutDir)\Tuohy.Epi.Docs.zip</zipFile>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />

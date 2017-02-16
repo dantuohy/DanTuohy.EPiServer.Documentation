@@ -11,21 +11,17 @@
     <Message Text="Creating Nuget Package" />
     <!-- Create the Versioned out dir for the client resources-->
     <!-- Copy -->
-    <ItemGroup>
-      <ClientResources Include="$(ProjectDir)\ClientResources\**\*" />
-      <Views Include="$(ProjectDir)\Views\**\*" />
+    <!--<ItemGroup>
+      <_CopyItems Include="$(ProjectDir)Content\**\*.*" />
     </ItemGroup>
-    <!--<Copy SourceFiles="$(ProjectDir)\module.config" DestinationFolder="$(TmpOutDir)\content" />
-    <Copy SourceFiles="$(ProjectDir)\web.config" DestinationFolder="$(TmpOutDir)\content" />
-    <Copy SourceFiles="@(ClientResources)" DestinationFiles="@(ClientResources -> '$(TmpOutDir)\content\ClientResources\%(RecursiveDir)%(Filename)%(Extension)')" />
-    <Copy SourceFiles="@(Views)" DestinationFiles="@(Views -> '$(TmpOutDir)\content\Views\%(RecursiveDir)%(Filename)%(Extension)')" />-->
+    <Copy SourceFiles="@(_CopyItems)" DestinationFolder="$(TmpOutDir)\content\%(RecursiveDir)" />-->
     <!-- Create the Zip file -->
     <!--<ZipDirectory InputPath="$(TmpOutDir)\content" OutputFileName="$(zipFile)" OverwriteExistingFile="true" />-->
     <!-- Create the package -->
     <Exec Command="$(NugetCommand)" />
     <!-- Cleanup -->
-    <RemoveDir Directories="$(TmpOutDir)" />
-    <Delete Files="$(zipFile)" />
+    <!--<RemoveDir Directories="$(TmpOutDir)" />
+    <Delete Files="$(zipFile)" />-->
   </Target>
   <Target Name="CopyModule" AfterTargets="Build;Rebuild" Condition="'$(Configuration)' == 'Debug'">
     <ItemGroup>
