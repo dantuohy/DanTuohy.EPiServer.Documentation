@@ -1,0 +1,28 @@
+﻿@model Tuohy.Epi.ContentTypesInUse.Models.LinksViewModel
+@{
+    Layout = "";
+}
+<a href="#" id="back">Back to list</a>
+<input type="hidden" value="@Model.PageNumber" id="pageNumber" />
+<input type="hidden" value="@Model.ContentTypeId" id="id" />
+<h2>@Model.ContentTypeName</h2>
+<ul>
+    @foreach (var link in Model.Links)
+    {
+        var friendlyUrl = link.FriendlyUrl == string.Empty ? "Home" : link.FriendlyUrl != null ? link.FriendlyUrl : null;
+        <li>
+            <a title="Go to edit page" href="@link.EditUrl">@link.LinkText</a>@if (friendlyUrl != null){<a title="View page" href="@friendlyUrl" target="_blank"><img src="~/InUse/ClientResources/images/open-in-new-tab.svg"/></a>}
+        </li>
+    }
+</ul>
+<div class="paging">
+    @if (Model.PageNumber > 0)
+    {
+        <a href="#" class="previous"><</a>
+    }
+    <a href="#" class="next">></a>
+</div>
+
+<script>
+    inUse.init();
+</script>
