@@ -26,7 +26,8 @@ namespace Tuohy.Epi.Docs.Controllers
                 SecondaryColour = settings.SecondaryColour,
                 TextColour = settings.TextColour,
                 IncludeJobs = settings.IncludeJobs,
-                AllowEditing = settings.AllowEditing
+                AllowEditing = settings.AllowEditing,
+                DisplayAsGroups = settings.DisplayAsGroups
             });
         }
 
@@ -41,7 +42,8 @@ namespace Tuohy.Epi.Docs.Controllers
                     SecondaryColour = model.SecondaryColour,
                     TextColour = model.TextColour,
                     IncludeJobs = model.IncludeJobs,
-                    AllowEditing = model.AllowEditing
+                    AllowEditing = model.AllowEditing,
+                    DisplayAsGroups = model.DisplayAsGroups
                 });
             }
 

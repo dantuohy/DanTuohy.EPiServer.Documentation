@@ -11,7 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Shows a list of all page and block types and how many of each are currently in use on the site, and includes links to the content type's edit page</description>
     <copyright>Copyright 2017</copyright>
-    <tags>CMS Gadget ContentTypes EPiServer</tags>
+    <tags>EPiServerModulePackage CMS Gadget ContentTypes EPiServer</tags>
 	<dependencies>
         <dependency id="EPiServer.CMS.Core" version="[8,11)" />
         <dependency id="EPiServer.Framework" version="[8,11)" />

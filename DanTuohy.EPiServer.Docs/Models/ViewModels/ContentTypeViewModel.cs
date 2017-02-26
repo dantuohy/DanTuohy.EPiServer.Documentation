@@ -4,8 +4,6 @@
     {
         public ContentTypeDoc FocusedContentTypeDoc { get; set; }
 
-        public string CustomDocumentation { get; set; }
-
         public ContentTypeViewModel(ContentTypeDoc focusedContentTypeDoc)
         {
             FocusedContentTypeDoc = focusedContentTypeDoc;
@@ -13,6 +11,7 @@
             {
                 FocusedContentTypeType = focusedContentTypeDoc.Type;
                 FocusedContentTypeId = focusedContentTypeDoc.Id.ToString();
+                FocusedContentTypeGroup = focusedContentTypeDoc.Group;
             }
         }
     }

@@ -21,5 +21,8 @@ namespace Tuohy.Epi.Docs.Models.ViewModels
 
         [Display(Name = "Allow Custom Editing?")]
         public bool AllowEditing { get; set; }
+
+        [Display(Name = "Display Content Types Grouped?")]
+        public bool DisplayAsGroups { get; set; }
     }
 }

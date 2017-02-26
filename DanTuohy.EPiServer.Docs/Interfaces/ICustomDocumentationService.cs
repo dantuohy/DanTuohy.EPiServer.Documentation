@@ -5,8 +5,8 @@ namespace Tuohy.Epi.Docs.Interfaces
 {
     public interface ICustomDocumentationService
     {
-        Identity Updrt(CustomDocumetation data);
+        Identity Updrt(CustomDocumentation data);
 
-        CustomDocumetation GetCustomDocumentation(int contentTypeId);
+        CustomDocumentation GetCustomDocumentation(string contentTypeId);
     }
 }

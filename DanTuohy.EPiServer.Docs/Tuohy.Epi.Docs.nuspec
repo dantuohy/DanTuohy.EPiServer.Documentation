@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Tuohy.Epi.Docs</id>
-    <version>1.0.0.53</version>
+    <version>1.0.0.62</version>
     <title>EPiServer Custom Documentation</title>
     <authors>Dan Tuohy</authors>
     <owners>Dan Tuohy</owners>
@@ -20,5 +20,6 @@
   <files>
     <file src="bin\Tuohy.Epi.Docs.dll" target="lib\net45\" />
     <file src="Content\**\*.*" target="content\modules\Tuohy.Epi.Docs\" />
+    <file src="lang\**\*.*" target="content\lang\" />
   </files>
 </package>

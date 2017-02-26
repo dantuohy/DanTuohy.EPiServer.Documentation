@@ -73,12 +73,12 @@ main {
     margin-top: 0;
 }
 
-    .doc-container .document form {
+    .doc-container form {
         display: inline-block;
         width: 100%;
     }
 
-        .doc-container .document form button {
+        .doc-container form button {
             margin-top: 20px;
         }
 
