@@ -8,7 +8,6 @@ using Tuohy.Epi.Docs.Interfaces;
 using Tuohy.Epi.Docs.Models.ViewModels;
 using Tuohy.Epi.Docs.Models.DynamicData;
 using EPiServer.DataAbstraction;
-using System.Web.Routing;
 using Tuohy.Epi.Docs.Models;
 
 namespace Tuohy.Epi.Docs.Controllers
@@ -50,7 +49,7 @@ namespace Tuohy.Epi.Docs.Controllers
             }
             else if (!string.IsNullOrWhiteSpace(name))
             {
-                contentType = _contentTypeService.ListAll().FirstOrDefault(x => x.ModelType.FullName.Equals(name, StringComparison.InvariantCultureIgnoreCase));
+                contentType = _contentTypeService.ListAll().FirstOrDefault(x => x.ModelType != null && x.ModelType.FullName != null && x.ModelType.FullName.Equals(name, StringComparison.InvariantCultureIgnoreCase));
             }
 
             if (contentType != null)
@@ -60,12 +59,12 @@ namespace Tuohy.Epi.Docs.Controllers
 
             var model = new ContentTypeViewModel(contentTypeDoc)
             {
-                Pages = _contentTypeService.GetAllPages().ToDictionary(x => x.ID, x => x.LocalizedFullName),
-                Blocks = _contentTypeService.GetAllBlocks().ToDictionary(x => x.ID, x => x.LocalizedFullName),
-                Media = _contentTypeService.GetAllMedia().ToDictionary(x => x.ID, x => x.LocalizedFullName)
+                Pages = _contentTypeService.GetAllPages().OrderBy(x => x.LocalizedName).ToDictionary(x => x.ID, x => new NameGroupPair { ContentTypeName = x.LocalizedName, GroupName = x.GroupName }),
+                Blocks = _contentTypeService.GetAllBlocks().OrderBy(x => x.LocalizedName).ToDictionary(x => x.ID, x => new NameGroupPair { ContentTypeName = x.LocalizedName, GroupName = x.GroupName }),
+                Media = _contentTypeService.GetAllMedia().OrderBy(x => x.LocalizedName).ToDictionary(x => x.ID, x => new NameGroupPair { ContentTypeName = x.LocalizedName, GroupName = x.GroupName })
             };
 
-            var customDocs = _customDocumentationService.GetCustomDocumentation(contentType == null ? 0 : contentType.ID);
+            var customDocs = _customDocumentationService.GetCustomDocumentation(contentType == null ? "0" : contentType.ID.ToString());
             if (customDocs != null)
             {
                 model.CustomDocumentation = customDocs.Markup;
@@ -86,17 +85,19 @@ namespace Tuohy.Epi.Docs.Controllers
                 {
                     model.Jobs = _jobService.ListAll();
                 }
-            }
-            if (settings != null && settings.AllowEditing)
-            {
-                if (User.IsInRole("Administrators") || User.IsInRole("CmsAdmins") || User.IsInRole("DocumentationEditors"))
-                {
-                    model.CanEdit = true;
-                }
+                model.DisplayAsGroups = settings.DisplayAsGroups;
 
-                if (editMode != null && editMode == 1.ToString())
+                if (settings.AllowEditing)
                 {
-                    model.IsEditMode = true;
+                    if (User.IsInRole("Administrators") || User.IsInRole("CmsAdmins") || User.IsInRole("DocumentationEditors"))
+                    {
+                        model.CanEdit = true;
+                    }
+
+                    if (editMode != null && editMode == 1.ToString())
+                    {
+                        model.IsEditMode = true;
+                    }
                 }
             }
 
@@ -105,33 +106,44 @@ namespace Tuohy.Epi.Docs.Controllers
         //todo confirm script tags are removed
         //todo validate no risk with SQL commands
         [ValidateInput(false)]
-        public ActionResult Save(int contentTypeId, string markup)
+        public ActionResult Save(string contentTypeId, string markup)
         {
-            var settings = _settingsService.GetSettings();
-
-            if ((!User.IsInRole("Administrators")
-                && !User.IsInRole("CmsAdmins")
-                && !User.IsInRole("DocumentationEditors"))
-                || (settings != null && !settings.AllowEditing)
-                || contentTypeId < 0
-                || string.IsNullOrWhiteSpace(markup))
+            if (!UserCanEdit(contentTypeId, markup))
             {
                 return RedirectToAction("Index");
             }
 
-            _customDocumentationService.Updrt(new CustomDocumetation
+            _customDocumentationService.Updrt(new CustomDocumentation
             {
                 ContentTypeId = contentTypeId,
                 Markup = markup
             });
 
-            return RedirectToAction("Index", "Documentation", new RouteValueDictionary(new { ctid = contentTypeId }));
+            return RedirectToAction("Index", "Documentation", new { ctid = contentTypeId });
         }
+
+        [ValidateInput(false)]
+        public ActionResult SaveJob(string jobId, string markup)
+        {
+            if (!UserCanEdit(jobId, markup))
+            {
+                return RedirectToAction("Index");
+            }
+
+            _customDocumentationService.Updrt(new CustomDocumentation
+            {
+                ContentTypeId = jobId,
+                Markup = markup
+            });
+
+            return RedirectToAction("Job", "Documentation", new { id = jobId });
+        }
+
 
         public ActionResult Job()
         {
             var idString = Request.QueryString["id"];
-            _log.Debug("Documentation: IDString=" + idString);
+            var editMode = Request.QueryString["edit"];
 
             JobDoc focusedJob = null;
 
@@ -143,14 +155,26 @@ namespace Tuohy.Epi.Docs.Controllers
 
             var model = new JobViewModel(focusedJob)
             {
-                Pages = _contentTypeService.GetAllPages().ToDictionary(x => x.ID, x => x.LocalizedFullName),
-                Blocks = _contentTypeService.GetAllBlocks().ToDictionary(x => x.ID, x => x.LocalizedFullName),
-                Media = _contentTypeService.GetAllMedia().ToDictionary(x => x.ID, x => x.LocalizedFullName),
+                Pages = _contentTypeService.GetAllPages().OrderBy(x => x.LocalizedName).ToDictionary(x => x.ID, x => new NameGroupPair { ContentTypeName = x.LocalizedName, GroupName = x.GroupName }),
+                Blocks = _contentTypeService.GetAllBlocks().OrderBy(x => x.LocalizedName).ToDictionary(x => x.ID, x => new NameGroupPair { ContentTypeName = x.LocalizedName, GroupName = x.GroupName }),
+                Media = _contentTypeService.GetAllMedia().OrderBy(x => x.LocalizedName).ToDictionary(x => x.ID, x => new NameGroupPair { ContentTypeName = x.LocalizedName, GroupName = x.GroupName }),
                 Jobs = _jobService.ListAll()
             };
 
+            if (focusedJob != null)
+            {
+                var customDocs = _customDocumentationService.GetCustomDocumentation(focusedJob.Id.ToString());
+
+                if (customDocs != null)
+                {
+                    model.CustomDocumentation = customDocs.Markup;
+                }
+            }
+
+
             var settings = _settingsService.GetSettings();
 
+            //todo refactor so only done once
             if (settings != null)
             {
                 model.PageDesign = new PageDesign
@@ -160,15 +184,41 @@ namespace Tuohy.Epi.Docs.Controllers
                     SecondaryColour = settings.SecondaryColour,
                     TextColour = settings.TextColour
                 };
+
+                model.DisplayAsGroups = settings.DisplayAsGroups;
+
                 if (!settings.IncludeJobs)
                 {
                     return RedirectToAction("Index");
                 }
+
+                if (settings.AllowEditing)
+                {
+                    if (User.IsInRole("Administrators") || User.IsInRole("CmsAdmins") || User.IsInRole("DocumentationEditors"))
+                    {
+                        model.CanEdit = true;
+                    }
+
+                    if (editMode != null && editMode == 1.ToString())
+                    {
+                        model.IsEditMode = true;
+                    }
+                }
             }
-
-
-
             return View(Paths.ToResource(GetType(), "Views/Documentation/job.cshtml"), model);
+        }
+
+
+        private bool UserCanEdit(string id, string markup)
+        {
+            var settings = _settingsService.GetSettings();
+
+            return ((User.IsInRole("Administrators")
+                      || User.IsInRole("CmsAdmins")
+                      || User.IsInRole("DocumentationEditors"))
+                     && (settings != null && !settings.AllowEditing)
+                     && !string.IsNullOrWhiteSpace(id)
+                     && !string.IsNullOrWhiteSpace(markup));
         }
     }
 }

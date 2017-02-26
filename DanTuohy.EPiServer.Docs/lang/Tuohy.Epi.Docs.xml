@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<languages>
+  <language name="English" id="en">
+    <documentation>
+      <nogroup>No Group</nogroup>
+      <media>Media</media>
+      <jobs>Jobs</jobs>
+      <blocks>Blocks</blocks>
+      <pages>Pages</pages>
+      <properties>Properties</properties>
+      <childpagesallowed>Child Pages Allowed</childpagesallowed>
+      <defaultvalue>Default Value:</defaultvalue>
+      <required>Required</required>
+      <searchable>Searchable</searchable>
+      <allowedtypes>Allowed Types</allowedtypes>
+      <all>All</all>
+      <none>None</none>
+      <accessrights>Access Rights</accessrights>
+    </documentation>
+  </language>
+</languages>

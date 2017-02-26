@@ -246,6 +246,7 @@
     <Content Include="Content\ClientResources\js\commands\toolbarProvider.js" />
     <Content Include="Content\ClientResources\js\commands\ViewDocumentation.js" />
     <Content Include="Content\ClientResources\js\commands\documentationCommandButton.js" />
+    <Content Include="lang\Tuohy.Epi.Docs.xml" />
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

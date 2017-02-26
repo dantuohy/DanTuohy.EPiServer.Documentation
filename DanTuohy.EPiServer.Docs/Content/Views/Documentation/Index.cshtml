@@ -1,4 +1,5 @@
-﻿@using EPiServer.Shell
+﻿@using EPiServer.Framework.Localization
+@using EPiServer.Shell
 @using Tuohy.Epi.Docs.Controllers
 @using Tuohy.Epi.Docs.Models
 @model Tuohy.Epi.Docs.Models.ViewModels.ContentTypeViewModel
@@ -56,7 +57,7 @@
                 }
                 <div class="row">
                     <div class="col s11">
-                        <h4>Properties</h4>
+                        <h4>@Html.Translate("/documentation/properties")</h4>
                     </div>
                     <div class="col s1">
                         <a class="expander btn-flat"><i class="material-icons">swap_vert</i></a>
@@ -80,16 +81,16 @@
                                         @if (!string.IsNullOrWhiteSpace(prop.DefaultValue))
                                         {
                                             <div class="property">
-                                                <span class="name">Default Value:</span>
+                                                <span class="name">@Html.Translate("/documentation/defaultvalue"):</span>
                                                 <span class="value">@prop.DefaultValue</span>
                                             </div>
                                         }
                                         <div class="property">
-                                            <span class="name">Required:</span>
+                                            <span class="name">@Html.Translate("/documentation/required"):</span>
                                             <span class="value">@prop.IsRequired</span>
                                         </div>
                                         <div class="property">
-                                            <span class="name">Searchable:</span>
+                                            <span class="name">@Html.Translate("/documentation/searchable"):</span>
                                             <span class="value">@prop.IsSearchable</span>
                                         </div>
                                         @if (prop.CustomAttributes != null && prop.CustomAttributes.Count > 0)
@@ -105,13 +106,13 @@
                                         @if (prop.AllowedTypes != null && prop.AllowedTypes.Count > 0)
                                         {
                                             <span class="property">
-                                                <span class="name">Allowed types:</span>
+                                                <span class="name">@Html.Translate("/documentation/allowedtypes"):</span>
                                                 <span class="value content-type-links">
                                                     @foreach (var allowedType in prop.AllowedTypes)
                                                     {
                                                         if (allowedType.Value == "All")
                                                         {
-                                                            <span>All</span>
+                                                            <span>@Html.Translate("/documentation/all")</span>
                                                         }
                                                         else
                                                         {
@@ -132,7 +133,7 @@
                     var page = Model.FocusedContentTypeDoc as PageDoc;
                     <div class="row">
                         <ul class="col s6 content-type-links collection with-header">
-                            <li class="collection-header"><h4>Child Pages Allowed</h4></li>
+                            <li class="collection-header"><h4>@Html.Translate("/documentation/childpagesallowed")</h4></li>
                             @if (page.AvaliablePages != null)
                             {
                                 if (page.AvaliablePages.Count > 0)
@@ -145,18 +146,18 @@
                                 }
                                 else
                                 {
-                                    <li class="collection-item">All</li>
+                                    <li class="collection-item">@Html.Translate("/documentation/all")</li>
                                 }
                             }
                             else
                             {
-                                <li class="collection-item">None</li>
+                                <li class="collection-item">@Html.Translate("/documentation/none")</li>
                             }
                         </ul>
                         @if (page.Access != null)
                         {
                         <ul class="col s6 collection with-header">
-                            <li class="collection-header"><h4>Access Rights</h4></li>
+                            <li class="collection-header"><h4>@Html.Translate("/documentation/accessrights")</h4></li>
                             @foreach (var a in page.Access)
                             {
                                 <li class="collection-item"><span class="badge">@a.Value</span>@a.Key</li>
@@ -175,7 +176,7 @@
             {
                 if (!Model.IsEditMode)
                 {
-                    <a class="btn-floating btn-large red right" href="@Paths.ToResource(typeof(DocumentationController), "documentation?edit=1&id=0")"><i class="small material-icons">mode_edit</i></a>
+                    <a class="btn-floating btn-large right secondary-colour text-colour" href="@Paths.ToResource(typeof(DocumentationController), "documentation?edit=1&id=0")"><i class="small material-icons">mode_edit</i></a>
                 }
             }
         </div>

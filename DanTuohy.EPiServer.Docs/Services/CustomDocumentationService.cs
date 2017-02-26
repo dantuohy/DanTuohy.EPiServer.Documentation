@@ -10,9 +10,9 @@ namespace Tuohy.Epi.Docs.Services
     [ServiceConfiguration(ServiceType = typeof(ICustomDocumentationService))]
     public class CustomDocumentationService : ICustomDocumentationService
     {
-        public Identity Updrt(CustomDocumetation data)
+        public Identity Updrt(CustomDocumentation data)
         {
-            var store = DynamicDataStoreFactory.Instance.CreateStore(typeof(CustomDocumetation));
+            var store = DynamicDataStoreFactory.Instance.CreateStore(typeof(CustomDocumentation));
             var oldDocs = GetCustomDocumentation(data.ContentTypeId);
             if (oldDocs == null)
             {
@@ -24,11 +24,11 @@ namespace Tuohy.Epi.Docs.Services
             return store.Save(data);
         }
 
-        public CustomDocumetation GetCustomDocumentation(int contentTypeId)
+        public CustomDocumentation GetCustomDocumentation(string contentTypeId)
         {
-            var store = DynamicDataStoreFactory.Instance.CreateStore(typeof(CustomDocumetation));
+            var store = DynamicDataStoreFactory.Instance.CreateStore(typeof(CustomDocumentation));
 
-            return store.Items<CustomDocumetation>().FirstOrDefault(x => x.ContentTypeId == contentTypeId);
+            return store.Items<CustomDocumentation>().FirstOrDefault(x => x.ContentTypeId == contentTypeId);
         }
     }
 }

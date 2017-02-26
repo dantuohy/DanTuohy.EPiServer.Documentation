@@ -107,13 +107,18 @@ namespace Tuohy.Epi.Docs.Services
         private PropertyDoc GetProperty(PropertyDefinition propertyDefinition, Type page)
         {
             var propertyDoc = _propertyMapper.Map(propertyDefinition);
-            var pageProperty = page.GetProperties().First(x => x.Name == propertyDefinition.Name);
-            var attriburtes = GetDocumentableAttributeValues(pageProperty);
+            var pageProperty = page.GetProperties().FirstOrDefault(x => x.Name == propertyDefinition.Name);
+            if (pageProperty == null)
+            {
+                return propertyDoc;
+            }
+
+            var attributes = GetDocumentableAttributeValues(pageProperty);
             foreach (var attribute in GetValidationAttributeValues(pageProperty))
             {
-                attriburtes.Add(attribute);
+                attributes.Add(attribute);
             }
-            propertyDoc.CustomAttributes = attriburtes;
+            propertyDoc.CustomAttributes = attributes;
             propertyDoc.AllowedTypes = GetAllowedTypesInContentArea(pageProperty);
             return propertyDoc;
         }
@@ -131,7 +136,7 @@ namespace Tuohy.Epi.Docs.Services
 
         private static string GetMediaDescriptorValues(Type media)
         {
-            var attribute = media.GetCustomAttribute<MediaDescriptorAttribute>();
+            var attribute = media.GetCustomAttributes(typeof(MediaDescriptorAttribute)).FirstOrDefault() as MediaDescriptorAttribute;
             if (attribute == null) return null;
             return attribute.ExtensionString;
         }
