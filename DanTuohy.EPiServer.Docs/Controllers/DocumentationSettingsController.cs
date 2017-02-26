@@ -8,7 +8,7 @@ using EPiServer.ServiceLocation;
 
 namespace Tuohy.Epi.Docs.Controllers
 {
-    [GuiPlugIn(Area = PlugInArea.AdminMenu, DisplayName = "Documentation Settings", UrlFromModuleFolder = "/documentationsettings/index")]
+    [GuiPlugIn(Area = EPiServer.PlugIn.PlugInArea.AdminMenu, DisplayName = "Documentation Settings", UrlFromModuleFolder = "/documentationsettings/index")]
     [Authorize(Roles = "CmsAdmins")]
     public class DocumentationSettingsController : Controller
     {

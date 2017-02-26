@@ -4,6 +4,8 @@ using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAnnotations;
 using EPiServer.Filters;
+using EPiServer.Shell.ObjectEditing;
+using Test9.Models.Properties;
 
 namespace Alloy8.Models.Blocks
 {
@@ -49,6 +51,12 @@ namespace Alloy8.Models.Blocks
         [UIHint("SortOrder")]
         [BackingType(typeof(PropertyNumber))]
         public virtual FilterSortOrder SortOrder { get; set; }
+
+        [Display(
+            GroupName = SystemTabNames.Content,
+            Order = 4)]
+        [SelectOne(SelectionFactoryType = typeof(TestSelectionFactory))]
+        public virtual string TestSelection { get; set; }
 
         [Display(
             GroupName = SystemTabNames.Content,

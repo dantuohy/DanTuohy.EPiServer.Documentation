@@ -248,6 +248,7 @@
     <Compile Include="Models\Pages\StandardPage.cs" />
     <Compile Include="Models\Pages\StartPage.cs" />
     <Compile Include="Models\Properties\PropertyStringList.cs" />
+    <Compile Include="Models\Properties\TestSelectionFactory.cs" />
     <Compile Include="Models\SiteContentType.cs" />
     <Compile Include="Models\SiteImageUrl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

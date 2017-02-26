@@ -12,6 +12,7 @@ namespace Tuohy.Epi.Docs.Models
         public bool IsSearchable { get; set; }
         public string Tab { get; set; }
         public int SortOrder { get; set; }
+        public List<string> Options { get; set; }
         public IDictionary<string, string> CustomAttributes { get; set; }
 
         public IDictionary<string, string> AllowedTypes { get; set; }

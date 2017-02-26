@@ -26,10 +26,13 @@
   <Target Name="CopyModule" AfterTargets="Build;Rebuild" Condition="'$(Configuration)' == 'Debug'">
     <ItemGroup>
       <_CopyItems Include="$(ProjectDir)Content\**\*.*" />
+      <_LangCopyItems Include="$(ProjectDir)lang\**\*.*" />
     </ItemGroup>
     <Copy SourceFiles="@(_CopyItems)" DestinationFolder="$(SolutionDir)Test8\modules\Tuohy.Epi.Docs\%(RecursiveDir)" />
+    <Copy SourceFiles="@(_LangCopyItems)" DestinationFolder="$(SolutionDir)Test8\lang" />
     <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(SolutionDir)Test8\bin" />
     <Copy SourceFiles="@(_CopyItems)" DestinationFolder="$(SolutionDir)Test9\modules\Tuohy.Epi.Docs\%(RecursiveDir)" />
+    <Copy SourceFiles="@(_LangCopyItems)" DestinationFolder="$(SolutionDir)Test9\lang" />
     <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(SolutionDir)Test9\bin" />
   </Target>
   <PropertyGroup>

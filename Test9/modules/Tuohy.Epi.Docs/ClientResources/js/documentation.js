@@ -3,6 +3,8 @@
 
   initExpandCollapse();
 
+  $(".content-types .collapsible-body ul li.active").goTo(".content-types");
+
   function initExpandCollapse() {
     var $collapsible = $(".document .collapsible");
 
@@ -25,3 +27,12 @@
         });
   }
 });
+
+(function ($) {
+  $.fn.goTo = function (selector) {
+    $(selector).animate({
+      scrollTop: $(this).offset().top + 'px'
+    }, 'fast');
+    return this;
+  }
+})(jQuery);

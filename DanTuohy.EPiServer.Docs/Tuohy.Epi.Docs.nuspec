@@ -14,6 +14,7 @@
     <tags>EPiServerModulePackage CMS Documentation EPiServer</tags>
     <dependencies>
       <dependency id="EPiServer.CMS.Core" version="8.0" />
+      <dependency id="EPiServer.CMS.UI.Core" version="8.0" />
       <dependency id="EPiServer.Framework" version="8.0" />
     </dependencies>
   </metadata>

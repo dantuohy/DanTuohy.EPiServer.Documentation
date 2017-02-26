@@ -4,6 +4,17 @@
 @{
     Layout = "~/modules/Tuohy.Epi.Docs/Views/Shared/Layouts/_DocumentationLayoutPage.cshtml";
 }
+@if (Model.IsEditMode)
+{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.5.3/tinymce.min.js"></script>
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            plugins: "image link textcolor colorpicker directionality table code",
+            default_link_target: "_blank"
+        });
+    </script>
+}
 <main>
     @if (Model.FocusedJobDoc != null)
     {
@@ -13,16 +24,16 @@
             {
                 if (!Model.IsEditMode)
                 {
-                    <a class="btn-floating btn-large right secondary-colour text-colour" href="@Paths.ToResource(typeof(DocumentationController), "documentation?edit=1&ctid=" + Model.FocusedContentTypeId)"><i class="small material-icons">mode_edit</i></a>
+                    <a class="btn-floating btn-large right secondary-colour text-colour" href="@Paths.ToResource(typeof(DocumentationController), "documentation/job?edit=1&id=" + Model.FocusedContentTypeId)"><i class="small material-icons">mode_edit</i></a>
                 }
             }
         </div>
         <div class="doc-container">
             <p class="flow-text">@Model.FocusedJobDoc.Description</p>
             @if (Model.IsEditMode)
-                {
-                <form action="@Url.Action("Save", "Documentation")">
-                    <input type="hidden" name="contentTypeId" id="contentTypeId" value="@Model.FocusedContentTypeDoc.Id" />
+            {
+                <form action="@Url.Action("SaveJob", "Documentation")">
+                    <input type="hidden" name="contentTypeId" id="jobId" value="@Model.FocusedContentTypeId" />
                     <textarea name="markup" id="markup">@Html.Raw(Model.CustomDocumentation)</textarea>
                     <button class="btn-floating btn-large right secondary-colour text-colour"><i class="material-icons small">done</i></button>
                 </form>
@@ -33,29 +44,31 @@
                     @Html.Raw(Model.CustomDocumentation)
                 </div>
             }
-            <ul class="collection with-header">
-                <li class="collection-header"><h4>Properties</h4></li>
-                <li class="collection-item expanded">
-                    <div>
-                        <div class="property">
-                            <span class="name">Interval:</span>
-                            <span class="value">@Model.FocusedJobDoc.IntervalName</span>
+            <div class="row">
+                <ul class="collection with-header">
+                    <li class="collection-header"><h4>Properties</h4></li>
+                    <li class="collection-item expanded">
+                        <div>
+                            <div class="property">
+                                <span class="name">Interval:</span>
+                                <span class="value">@Model.FocusedJobDoc.IntervalName</span>
+                            </div>
+                            <div class="property">
+                                <span class="name">Times:</span>
+                                <span class="value">@Model.FocusedJobDoc.IntervalLength</span>
+                            </div>
+                            <div class="property">
+                                <span class="name">Active:</span>
+                                <span class="value">@Model.FocusedJobDoc.IsActive</span>
+                            </div>
+                            <div class="property">
+                                <span class="name">Stoppable:</span>
+                                <span class="value">@Model.FocusedJobDoc.IsStoppable</span>
+                            </div>
                         </div>
-                        <div class="property">
-                            <span class="name">Times:</span>
-                            <span class="value">@Model.FocusedJobDoc.IntervalLength</span>
-                        </div>
-                        <div class="property">
-                            <span class="name">Active:</span>
-                            <span class="value">@Model.FocusedJobDoc.IsActive</span>
-                        </div>
-                        <div class="property">
-                            <span class="name">Stoppable:</span>
-                            <span class="value">@Model.FocusedJobDoc.IsStoppable</span>
-                        </div>
-                    </div>
-                </li>
-            </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
     }
 </main>

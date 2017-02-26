@@ -10,6 +10,8 @@ using EPiServer.Framework.DataAnnotations;
 using EPiServer.ServiceLocation;
 using Tuohy.Epi.Docs.Interfaces;
 using Tuohy.Epi.Docs.Models;
+using EPiServer.Framework.Localization;
+using EPiServer.Shell.ObjectEditing;
 
 namespace Tuohy.Epi.Docs.Services
 {
@@ -61,7 +63,7 @@ namespace Tuohy.Epi.Docs.Services
                 var avaliablePages = GetAvaliablePages(contentType);
                 pageDoc.AvaliablePages = avaliablePages == null ? null : avaliablePages.ToDictionary(x => x.ID.ToString(), x => x.LocalizedName);
 
-              //  pageDoc.Access = contentType.ACL.ToDictionary(x => x.Value.Name, x => x.Value.Access.ToString());
+                //  pageDoc.Access = contentType.ACL.ToDictionary(x => x.Value.Name, x => x.Value.Access.ToString());
                 return pageDoc;
             }
             if (contentType.ModelType.IsSubclassOf(typeof(BlockData)))
@@ -113,6 +115,8 @@ namespace Tuohy.Epi.Docs.Services
                 return propertyDoc;
             }
 
+            propertyDoc.Options = GetPossibleOptions(pageProperty, propertyDefinition.LocalizationService);
+
             var attributes = GetDocumentableAttributeValues(pageProperty);
             foreach (var attribute in GetValidationAttributeValues(pageProperty))
             {
@@ -120,7 +124,54 @@ namespace Tuohy.Epi.Docs.Services
             }
             propertyDoc.CustomAttributes = attributes;
             propertyDoc.AllowedTypes = GetAllowedTypesInContentArea(pageProperty);
+
+
+
             return propertyDoc;
+        }
+
+        private static List<string> GetPossibleOptions(PropertyInfo property, LocalizationService localizationService)
+        {
+            var options = new List<string>();
+
+            var selectOneAttribute = property.GetCustomAttribute<SelectOneAttribute>();
+            var selectManyAttribute = property.GetCustomAttribute<SelectManyAttribute>();
+            if (selectOneAttribute != null)
+            {
+
+                var instance = Activator.CreateInstance(selectOneAttribute.SelectionFactoryType) as ISelectionFactory;
+                var selectItems = instance.GetSelections(null);
+
+                options = selectItems.Select(x => x.Text).ToList();
+            }
+
+            if (selectManyAttribute != null)
+            {
+                var instance = Activator.CreateInstance(selectManyAttribute.SelectionFactoryType) as ISelectionFactory;
+                var selectItems = instance.GetSelections(null);
+
+                options = selectItems.Select(x => x.Text).ToList();
+            }
+
+            if (property.PropertyType.IsEnum)
+            {
+                foreach (var option in Enum.GetValues(property.PropertyType))
+                {
+                    string optionText = option.ToString();
+                    string localizationPath = string.Format("/property/enum/{0}/{1}", property.PropertyType.Name.ToLowerInvariant(), optionText.ToLowerInvariant());
+
+                    if (localizationService.TryGetString(localizationPath, out optionText))
+                    {
+                        options.Add(optionText);
+                    }
+                    else
+                    {
+                        options.Add(option.ToString());
+                    }
+                }
+            }
+
+            return options;
         }
 
         private static IDictionary<string, string> GetDocumentableAttributeValues(PropertyInfo property)
@@ -129,8 +180,8 @@ namespace Tuohy.Epi.Docs.Services
                 .GetCustomAttributes(true)
                 .OfType<IDocumentable>();
 
-            return documentableAttributes.ToDictionary(documentableAttribute => 
-            documentableAttribute.Name, 
+            return documentableAttributes.ToDictionary(documentableAttribute =>
+            documentableAttribute.Name,
             documentableAttribute => documentableAttribute.Value);
         }
 
@@ -169,7 +220,7 @@ namespace Tuohy.Epi.Docs.Services
 
         private IDictionary<string, string> GetAllowedTypesInContentArea(PropertyInfo property)
         {
-            if(property.PropertyType.FullName == typeof(ContentArea).FullName)
+            if (property.PropertyType.FullName == typeof(ContentArea).FullName)
             {
                 var allowed = new Dictionary<string, string>();
                 var allowedTypes = property.GetCustomAttribute<AllowedTypesAttribute>();
@@ -180,11 +231,11 @@ namespace Tuohy.Epi.Docs.Services
                 }
                 else
                 {
-                    foreach(var type in allowedTypes.AllowedTypes.Select(x => ToContentType(x)).Where(x => x != null))
+                    foreach (var type in allowedTypes.AllowedTypes.Select(x => ToContentType(x)).Where(x => x != null))
                     {
                         allowed.Add(type.ID.ToString(), type.LocalizedName);
                     }
-              
+
                 }
                 return allowed;
             }
@@ -193,7 +244,7 @@ namespace Tuohy.Epi.Docs.Services
 
         private ContentType ToContentType(Type content)
         {
-            return _contentTypeRepository.Load(content);  
+            return _contentTypeRepository.Load(content);
         }
     }
 }
