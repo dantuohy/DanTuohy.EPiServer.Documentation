@@ -69,25 +69,67 @@
             }
         }
     }
-    <ul id="slide-out" class="side-nav fixed content-types">
-        <li class="logo">
-            <a id="logo-container" href="documentation" class="brand-logo">
-                <img id="front-page-logo" src="@logoUrl" alt="Logo" />
-            </a>
-        </li>
-        @if (Model.DisplayAsGroups)
-        {
-            foreach (var group in Model.Grouped)
+    @if (!Model.HideNavigation)
+    {
+        <ul id="slide-out" class="side-nav fixed content-types">
+            <li class="logo">
+                <a id="logo-container" href="documentation" class="brand-logo">
+                    <img id="front-page-logo" src="@logoUrl" alt="Logo" />
+                </a>
+            </li>
+            @if (Model.DisplayAsGroups)
+            {
+                foreach (var group in Model.Grouped)
+                {
+                    <li class="no-padding">
+                        <ul class="collapsible collapsible-accordion">
+                            <li>
+                                <a class="collapsible-header@(featuredContentExists && Model.FocusedContentTypeType != ContentTypeEnum.Job && Model.FocusedContentTypeGroup == group.Key ? " " + LocalizationService.Current.GetString("/documentation/nogroup") : string.Empty)">@(string.IsNullOrWhiteSpace(group.Key) ? "No Group" : group.Key )<i class="material-icons">arrow_drop_down</i></a>
+                                <div class="collapsible-body">
+                                    <ul>
+                                        @foreach (var contentType in group)
+                                        {
+                                            <li class=@(featuredContentExists && contentType.Key.ToString() == Model.FocusedContentTypeId ? "active" : string.Empty)><a class="content-type" href="@Paths.ToResource(typeof(DocumentationController), "documentation?ctid=" + contentType.Key)">@contentType.Value.ContentTypeName</a></li>
+                                        }
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                }
+            }
+            else
             {
                 <li class="no-padding">
                     <ul class="collapsible collapsible-accordion">
                         <li>
-                            <a class="collapsible-header@(featuredContentExists  && Model.FocusedContentTypeType != ContentTypeEnum.Job && Model.FocusedContentTypeGroup == group.Key ? " " + LocalizationService.Current.GetString("/documentation/nogroup") : string.Empty)">@(string.IsNullOrWhiteSpace(group.Key) ? "No Group" : group.Key )<i class="material-icons">arrow_drop_down</i></a>
+                            <a class="collapsible-header@(featuredContentExists && Model.FocusedContentTypeType == ContentTypeEnum.Page ? " active" : string.Empty)">@LocalizationService.Current.GetString("/documentation/pages")<i class="material-icons">arrow_drop_down</i></a>
                             <div class="collapsible-body">
                                 <ul>
-                                    @foreach (var contentType in group)
+                                    @if (Model.Pages != null)
                                     {
-                                        <li class=@(featuredContentExists && contentType.Key.ToString() == Model.FocusedContentTypeId ? "active" : string.Empty)><a class="content-type" href="@Paths.ToResource(typeof(DocumentationController), "documentation?ctid=" + contentType.Key)">@contentType.Value.ContentTypeName</a></li>
+                                        foreach (var page in Model.Pages)
+                                        {
+                                            <li class=@(featuredContentExists && page.Key.ToString() == Model.FocusedContentTypeId ? "active" : string.Empty)><a class="content-type" href="@Paths.ToResource(typeof(DocumentationController), "documentation?ctid=" + page.Key)">@page.Value.ContentTypeName</a></li>
+                                        }
+                                    }
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <li class="no-padding">
+                    <ul class="collapsible collapsible-accordion">
+                        <li>
+                            <a class="collapsible-header@(featuredContentExists && Model.FocusedContentTypeType == ContentTypeEnum.Block ? " active" : string.Empty)">@LocalizationService.Current.GetString("/documentation/blocks")<i class="material-icons">arrow_drop_down</i></a>
+                            <div class="collapsible-body">
+                                <ul>
+                                    @if (Model.Blocks != null)
+                                    {
+                                        foreach (var block in Model.Blocks)
+                                        {
+                                            <li class=@(featuredContentExists && block.Key.ToString() == Model.FocusedContentTypeId ? "active" : string.Empty)><a class="content-type" href="@Paths.ToResource(typeof(DocumentationController), "documentation?ctid=" + block.Key)">@block.Value.ContentTypeName</a></li>
+                                        }
                                     }
                                 </ul>
                             </div>
@@ -95,20 +137,17 @@
                     </ul>
                 </li>
             }
-        }
-        else
-        {
             <li class="no-padding">
                 <ul class="collapsible collapsible-accordion">
                     <li>
-                        <a class="collapsible-header@(featuredContentExists && Model.FocusedContentTypeType == ContentTypeEnum.Page ? " active" : string.Empty)">@LocalizationService.Current.GetString("/documentation/pages")<i class="material-icons">arrow_drop_down</i></a>
+                        <a class="collapsible-header@(featuredContentExists && Model.FocusedContentTypeType == ContentTypeEnum.Media ? " active" : string.Empty)">@LocalizationService.Current.GetString("/documentation/media")<i class="material-icons">arrow_drop_down</i></a>
                         <div class="collapsible-body">
                             <ul>
-                                @if (Model.Pages != null)
+                                @if (Model.Media != null)
                                 {
-                                    foreach (var page in Model.Pages)
+                                    foreach (var media in Model.Media)
                                     {
-                                        <li class=@(featuredContentExists && page.Key.ToString() == Model.FocusedContentTypeId ? "active" : string.Empty)><a class="content-type" href="@Paths.ToResource(typeof(DocumentationController), "documentation?ctid=" + page.Key)">@page.Value.ContentTypeName</a></li>
+                                        <li class=@(featuredContentExists && media.Key.ToString() == Model.FocusedContentTypeId ? "active" : string.Empty)><a class="content-type" href="@Paths.ToResource(typeof(DocumentationController), "documentation?ctid=" + media.Key)">@media.Value.ContentTypeName</a></li>
                                     }
                                 }
                             </ul>
@@ -116,63 +155,35 @@
                     </li>
                 </ul>
             </li>
-            <li class="no-padding">
-                <ul class="collapsible collapsible-accordion">
-                    <li>
-                        <a class="collapsible-header@(featuredContentExists && Model.FocusedContentTypeType == ContentTypeEnum.Block ? " active" : string.Empty)">@LocalizationService.Current.GetString("/documentation/blocks")<i class="material-icons">arrow_drop_down</i></a>
-                        <div class="collapsible-body">
-                            <ul>
-                                @if (Model.Blocks != null)
-                                {
-                                    foreach (var block in Model.Blocks)
-                                    {
-                                        <li class=@(featuredContentExists && block.Key.ToString() == Model.FocusedContentTypeId ? "active" : string.Empty)><a class="content-type" href="@Paths.ToResource(typeof(DocumentationController), "documentation?ctid=" + block.Key)">@block.Value.ContentTypeName</a></li>
-                                    }
-                                }
-                            </ul>
-                        </div>
-                    </li>
-                </ul>
-            </li>
-        }
-        <li class="no-padding">
-            <ul class="collapsible collapsible-accordion">
-                <li>
-                    <a class="collapsible-header@(featuredContentExists && Model.FocusedContentTypeType == ContentTypeEnum.Media ? " active" : string.Empty)">@LocalizationService.Current.GetString("/documentation/media")<i class="material-icons">arrow_drop_down</i></a>
-                    <div class="collapsible-body">
-                        <ul>
-                            @if (Model.Media != null)
-                            {
-                                foreach (var media in Model.Media)
-                                {
-                                    <li class=@(featuredContentExists && media.Key.ToString() == Model.FocusedContentTypeId ? "active" : string.Empty)><a class="content-type" href="@Paths.ToResource(typeof(DocumentationController), "documentation?ctid=" + media.Key)">@media.Value.ContentTypeName</a></li>
-                                }
-                            }
-                        </ul>
-                    </div>
-                </li>
-            </ul>
-        </li>
 
-        @if (Model.Jobs != null)
-        {
-            <li class="no-padding">
-                <ul class="collapsible collapsible-accordion">
-                    <li>
-                        <a class="collapsible-header@(featuredContentExists && Model.FocusedContentTypeType == ContentTypeEnum.Job ? " active" : string.Empty)">@LocalizationService.Current.GetString("/documentation/jobs")<i class="material-icons">arrow_drop_down</i></a>
-                        <div class="collapsible-body">
-                            <ul>
-                                @foreach (var job in Model.Jobs)
-                                {
-                                    <li class=@(featuredContentExists && job.Key.ToString() == Model.FocusedContentTypeId ? "active" : string.Empty)><a class="content-type" href="@Paths.ToResource(typeof(DocumentationController), "documentation/job?id=" + job.Key)">@job.Value</a></li>
-                                }
-                            </ul>
-                        </div>
-                    </li>
-                </ul>
-            </li>
-        }
-    </ul>
+            @if (Model.Jobs != null)
+            {
+                <li class="no-padding">
+                    <ul class="collapsible collapsible-accordion">
+                        <li>
+                            <a class="collapsible-header@(featuredContentExists && Model.FocusedContentTypeType == ContentTypeEnum.Job ? " active" : string.Empty)">@LocalizationService.Current.GetString("/documentation/jobs")<i class="material-icons">arrow_drop_down</i></a>
+                            <div class="collapsible-body">
+                                <ul>
+                                    @foreach (var job in Model.Jobs)
+                                    {
+                                        <li class=@(featuredContentExists && job.Key.ToString() == Model.FocusedContentTypeId ? "active" : string.Empty)><a class="content-type" href="@Paths.ToResource(typeof(DocumentationController), "documentation/job?id=" + job.Key)">@job.Value</a></li>
+                                    }
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            }
+        </ul>
+    }
+    else
+    {
+        <style>
+            main{
+                margin-left: 0;
+            }
+        </style>
+    }
     @RenderBody()
     <!-- Compiled and minified JavaScript -->
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>

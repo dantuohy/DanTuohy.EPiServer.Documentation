@@ -2,20 +2,20 @@
 <package>
   <metadata>
     <id>Tuohy.Epi.Docs</id>
-    <version>1.0.0.62</version>
-    <title>EPiServer Custom Documentation</title>
+    <version>1.0.0.1</version>
+    <title>Content Editor Documentation For EPiServer</title>
     <authors>Dan Tuohy</authors>
     <owners>Dan Tuohy</owners>
-    <projectUrl>http://dantuohy.me</projectUrl>
+    <projectUrl>https://github.com/dantuohy/DanTuohy.EPiServer.Documentation</projectUrl>
     <iconUrl>http://dantuohy.me/Content/images/favicons/favicon-96x96.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>This adds documentation to your EPi site to help content editors know and understand how their content templates work</description>
     <copyright>Copyright 2017</copyright>
     <tags>EPiServerModulePackage CMS Documentation EPiServer</tags>
     <dependencies>
-      <dependency id="EPiServer.CMS.Core" version="8.0" />
-      <dependency id="EPiServer.CMS.UI.Core" version="8.0" />
-      <dependency id="EPiServer.Framework" version="8.0" />
+      <dependency id="EPiServer.CMS.Core" version="[8,11)" />
+      <dependency id="EPiServer.CMS.UI.Core" version="[8,11)" />
+      <dependency id="EPiServer.Framework" version="[8,11)" />
     </dependencies>
   </metadata>
   <files>

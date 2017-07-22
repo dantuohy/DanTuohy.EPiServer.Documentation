@@ -4,7 +4,9 @@
 @using Tuohy.Epi.Docs.Models
 @model Tuohy.Epi.Docs.Models.ViewModels.ContentTypeViewModel
 @{
+
     Layout = "~/modules/Tuohy.Epi.Docs/Views/Shared/Layouts/_DocumentationLayoutPage.cshtml";
+
 
     var featuredContentExists = Model.FocusedContentTypeDoc != null;
 }
@@ -163,13 +165,13 @@
                         </ul>
                         @if (page.Access != null)
                         {
-                        <ul class="col s6 collection with-header">
-                            <li class="collection-header"><h4>@LocalizationService.Current.GetString("/documentation/accessrights")</h4></li>
-                            @foreach (var a in page.Access)
-                            {
-                                <li class="collection-item"><span class="badge">@a.Value</span>@a.Key</li>
-                            }
-                        </ul>
+                            <ul class="col s6 collection with-header">
+                                <li class="collection-header"><h4>@LocalizationService.Current.GetString("/documentation/accessrights")</h4></li>
+                                @foreach (var a in page.Access)
+                                {
+                                    <li class="collection-item"><span class="badge">@a.Value</span>@a.Key</li>
+                                }
+                            </ul>
                         }
                     </div>
                 }

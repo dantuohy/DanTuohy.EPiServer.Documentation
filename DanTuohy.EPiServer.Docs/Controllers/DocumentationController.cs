@@ -9,10 +9,11 @@ using Tuohy.Epi.Docs.Models.ViewModels;
 using Tuohy.Epi.Docs.Models.DynamicData;
 using EPiServer.DataAbstraction;
 using Tuohy.Epi.Docs.Models;
+using EPiServer.Core;
 
 namespace Tuohy.Epi.Docs.Controllers
 {
-    [Authorize(Roles = "Administrators, CmsAdmins, WebEditors")]
+    [Authorize(Roles = "Administrators, CmsAdmins, WebEditors, WebAdmins")]
     public class DocumentationController : Controller
     {
         private static ILog _log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
@@ -103,42 +104,6 @@ namespace Tuohy.Epi.Docs.Controllers
 
             return View(Paths.ToResource(GetType(), "Views/Documentation/index.cshtml"), model);
         }
-        //todo confirm script tags are removed
-        //todo validate no risk with SQL commands
-        [ValidateInput(false)]
-        public ActionResult Save(string contentTypeId, string markup)
-        {
-            if (!UserCanEdit(contentTypeId, markup))
-            {
-                return RedirectToAction("Index");
-            }
-
-            _customDocumentationService.Updrt(new CustomDocumentation
-            {
-                ContentTypeId = contentTypeId,
-                Markup = markup
-            });
-
-            return RedirectToAction("Index", "Documentation", new { ctid = contentTypeId });
-        }
-
-        [ValidateInput(false)]
-        public ActionResult SaveJob(string jobId, string markup)
-        {
-            if (!UserCanEdit(jobId, markup))
-            {
-                return RedirectToAction("Index");
-            }
-
-            _customDocumentationService.Updrt(new CustomDocumentation
-            {
-                ContentTypeId = jobId,
-                Markup = markup
-            });
-
-            return RedirectToAction("Job", "Documentation", new { id = jobId });
-        }
-
 
         public ActionResult Job()
         {
@@ -209,6 +174,42 @@ namespace Tuohy.Epi.Docs.Controllers
         }
 
 
+        //todo confirm script tags are removed
+        //todo validate no risk with SQL commands
+        [ValidateInput(false)]
+        public ActionResult Save(string contentTypeId, string markup)
+        {
+            if (!UserCanEdit(contentTypeId, markup))
+            {
+                return RedirectToAction("Index");
+            }
+
+            _customDocumentationService.Updrt(new CustomDocumentation
+            {
+                ContentTypeId = contentTypeId,
+                Markup = markup
+            });
+
+            return RedirectToAction("Index", "Documentation", new { ctid = contentTypeId });
+        }
+
+        [ValidateInput(false)]
+        public ActionResult SaveJob(string jobId, string markup)
+        {
+            if (!UserCanEdit(jobId, markup))
+            {
+                return RedirectToAction("Index");
+            }
+
+            _customDocumentationService.Updrt(new CustomDocumentation
+            {
+                ContentTypeId = jobId,
+                Markup = markup
+            });
+
+            return RedirectToAction("Job", "Documentation", new { id = jobId });
+        }
+        
         private bool UserCanEdit(string id, string markup)
         {
             var settings = _settingsService.GetSettings();

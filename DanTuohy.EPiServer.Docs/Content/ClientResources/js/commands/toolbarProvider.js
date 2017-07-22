@@ -14,7 +14,7 @@
       // of commands to the different areas
 
       //Create dijit/Form/Button in the leading area and bind the TestCommand to it
-      this.addToLeading(new ViewDocumentationCommand({
+      this.addToCenter(new ViewDocumentationCommand({
         label: "View Documentation"
       }), { showLabel: true, widget: Button });
 

@@ -220,7 +220,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Business\Attributes\DocumentableRegularExpressionAttribute.cs" />
-    <Compile Include="Business\DocumantationMenuItem.cs" />
+    <Compile Include="Episerver\MenuItems\DocumantationMenuItem.cs" />
     <Compile Include="Controllers\DocumentationSettingsController.cs" />
     <Compile Include="Controllers\DocumentationController.cs" />
     <Compile Include="Interfaces\ICustomDocumentationService.cs" />
@@ -294,9 +294,7 @@
   <ItemGroup>
     <None Include="Properties\PublishProfiles\Directory.pubxml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Business\Initialization\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

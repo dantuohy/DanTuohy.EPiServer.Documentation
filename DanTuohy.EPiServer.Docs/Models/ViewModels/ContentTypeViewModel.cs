@@ -2,6 +2,7 @@
 {
     public class ContentTypeViewModel : DocumentationPageViewModel
     {
+       
         public ContentTypeDoc FocusedContentTypeDoc { get; set; }
 
         public ContentTypeViewModel(ContentTypeDoc focusedContentTypeDoc)
@@ -13,6 +14,13 @@
                 FocusedContentTypeId = focusedContentTypeDoc.Id.ToString();
                 FocusedContentTypeGroup = focusedContentTypeDoc.Group;
             }
+        }
+
+        public ContentTypeViewModel(ContentTypeDoc focusedContentTypeDoc, bool hideNavigation)
+            : this(focusedContentTypeDoc)
+        {
+            HideNavigation = hideNavigation;
+
         }
     }
 }

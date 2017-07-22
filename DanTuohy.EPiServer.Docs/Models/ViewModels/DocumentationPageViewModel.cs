@@ -18,6 +18,7 @@ namespace Tuohy.Epi.Docs.Models.ViewModels
         public bool IsEditMode { get; set; }
         public bool DisplayAsGroups { get; set; }
         public string CustomDocumentation { get; set; }
+        public bool HideNavigation { get; set; }
         public IEnumerable<IGrouping<string, KeyValuePair<int, NameGroupPair>>> Grouped
         {
             get { return Pages.Concat(Blocks).OrderBy(x => x.Value.GroupName).GroupBy(x => x.Value.GroupName); }

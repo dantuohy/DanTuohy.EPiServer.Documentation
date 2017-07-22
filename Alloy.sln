@@ -14,7 +14,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test8", "Test8\Test8.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test9", "Test9\Test9.csproj", "{93732B3C-45A1-4A9A-943F-EF51137D9D87}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tuohy.Epi.ContentTypesInUse", "Tuohy.Epi.ContentTypesInUse\Tuohy.Epi.ContentTypesInUse.csproj", "{0CD5CA78-6748-4FE1-BA6E-8733C36BDCAC}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GDocImages", "GDocImages", "{D2D80F51-7ABF-414F-A0CC-0DE21BAED79C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,10 +34,6 @@ Global
 		{93732B3C-45A1-4A9A-943F-EF51137D9D87}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{93732B3C-45A1-4A9A-943F-EF51137D9D87}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{93732B3C-45A1-4A9A-943F-EF51137D9D87}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0CD5CA78-6748-4FE1-BA6E-8733C36BDCAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0CD5CA78-6748-4FE1-BA6E-8733C36BDCAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0CD5CA78-6748-4FE1-BA6E-8733C36BDCAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0CD5CA78-6748-4FE1-BA6E-8733C36BDCAC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
