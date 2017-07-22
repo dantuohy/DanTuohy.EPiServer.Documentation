@@ -14,16 +14,42 @@ Documentation is built up of names, descriptions and other information contained
   * Choose whether to display scheduled job information or not
   * Choose if custom documentation is allowed and who can create/edit this content
   * Choose whether to group content type by type (Page,Block..) or Group.
+  
+
+![Documentation](https://github.com/dantuohy/DanTuohy.EPiServer.Documentation/blob/master/Documentation%20Images/Documentation.png)
+
+
 
 ### Menu Item
 Allows for easy access to documentation
 
 
+![Image of menu item](https://github.com/dantuohy/DanTuohy.EPiServer.Documentation/blob/master/Documentation%20Images/Menu_Tool.png)
+
+
 ### Command action
 Allows for access to the documentation for the current content type
 
+
+![Image of command action](https://github.com/dantuohy/DanTuohy.EPiServer.Documentation/blob/master/Documentation%20Images/Command_Button.png)
+
+
 ### Admin Settings
 
+
+![Admin Settings](https://github.com/dantuohy/DanTuohy.EPiServer.Documentation/blob/master/Documentation%20Images/Documentatio_Settings.png)
+
+
+### Custom Editing of Documentation
+
+
+Click to edit custom documentation:
+
+![Edit options](https://github.com/dantuohy/DanTuohy.EPiServer.Documentation/blob/master/Documentation%20Images/Custom_Editing_Enabled.png)
+
+
+Edit documentation and click save:
+![Save changes](https://github.com/dantuohy/DanTuohy.EPiServer.Documentation/blob/master/Documentation%20Images/Custom_Editing.png)
 
 
 ## Installation
