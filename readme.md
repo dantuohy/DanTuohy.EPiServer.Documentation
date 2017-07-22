@@ -8,6 +8,7 @@ Documentation is built up of names, descriptions and other information contained
 
 * Display property information for PageData, BlockData and MediaData
 * Allows authorized users to add custom documentation for each content type with a WYSISYG
+* Display information about Scheduled Jobs
 * Adminstrator settings allows administrators to:
   * Change the logo and control some simple styling on the documentation to resemble their brand
   * Choose whether to display scheduled job information or not
