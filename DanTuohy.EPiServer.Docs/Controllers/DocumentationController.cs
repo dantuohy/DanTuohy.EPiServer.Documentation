@@ -217,7 +217,7 @@ namespace Tuohy.Epi.Docs.Controllers
             return ((User.IsInRole("Administrators")
                       || User.IsInRole("CmsAdmins")
                       || User.IsInRole("DocumentationEditors"))
-                     && (settings != null && !settings.AllowEditing)
+                     && (settings != null && settings.AllowEditing)
                      && !string.IsNullOrWhiteSpace(id)
                      && !string.IsNullOrWhiteSpace(markup));
         }

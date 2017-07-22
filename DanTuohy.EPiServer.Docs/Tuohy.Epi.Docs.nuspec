@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>Tuohy.Epi.Docs</id>
-    <version>1.0.0.1</version>
+    <version>1.0.0.0</version>
     <title>Content Editor Documentation For EPiServer</title>
     <authors>Dan Tuohy</authors>
     <owners>Dan Tuohy</owners>
