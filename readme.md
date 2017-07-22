@@ -37,4 +37,6 @@ The package can be found in the [EPiServer Nuget Feed.](http://nuget.episerver.c
 ## Setup
 
 * All Setup is managed in the administrator settings page
-* To allow people who are not administrators to edit custom documentation add them to the **DocumentationEditors** role 
+* To allow people who are not administrators to edit custom documentation
+ * Create a role called **DocumentationEditors**
+ * Add any users to the role
