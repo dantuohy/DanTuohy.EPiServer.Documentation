@@ -40,3 +40,29 @@ The package can be found in the [EPiServer Nuget Feed.](http://nuget.episerver.c
 * To allow people who are not administrators to edit custom documentation
  * Create a role called **DocumentationEditors**
  * Add any users to the role
+
+
+## Extend
+
+Documentation is built up by reading the information in attributes decorated on properties. For example the description is sourced from the DisplayAttribute.
+
+If you create your own custom attributes for IContent properties, implment the IDocumentable interface to enable documentation to show for the property. 
+
+The below example is included in the package as an example
+
+```c#
+    /// <summary>
+    /// Regular expression attribute that extends <see cref="IDocumentable"></see>/>
+    /// </summary>
+    public class DocumentableRegularExpressionAttribute : RegularExpressionAttribute, IDocumentable
+    {
+        public DocumentableRegularExpressionAttribute(string pattern, string name, string value) : base(pattern)
+        {
+            Name = name;
+            Value = value;   
+        }
+
+        public string Name { get; set; }
+        public string Value { get; set; }
+    }
+```
