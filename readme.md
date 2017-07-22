@@ -15,6 +15,16 @@ Documentation is built up of names, descriptions and other information contained
   * Choose if custom documentation is allowed and who can create/edit this content
   * Choose whether to group content type by type (Page,Block..) or Group.
 
+### Menu Item
+Allows for easy access to documentation
+
+
+### Command action
+Allows for access to the documentation for the current content type
+
+### Admin Settings
+
+
 
 ## Installation
 
@@ -23,3 +33,8 @@ Install-Package tuohy.epi.docs
 ```
 
 The package can be found in the [EPiServer Nuget Feed.](http://nuget.episerver.com)
+
+## Setup
+
+* All Setup is managed in the administrator settings page
+* To allow people who are not administrators to edit custom documentation add them to the **DocumentationEditors** role 
