@@ -1,0 +1,157 @@
+﻿body, html {
+    height: 100%;
+}
+
+main {
+    margin-top: -32px;
+}
+
+ul.side-nav.fixed li.logo {
+    text-align: center;
+    margin-top: 32px;
+    margin-bottom: 80px;
+}
+
+#logo-container {
+    height: 80px;
+    margin-bottom: 32px;
+}
+
+#front-page-logo {
+    display: inline-block;
+    height: 100%;
+    pointer-events: none;
+}
+
+main {
+    height: 100%;
+    margin-left: 300px;
+}
+
+.loader {
+    display: none;
+}
+
+    .loader.active {
+        display: block;
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+    }
+
+.preloader-wrapper {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.heading {
+    padding-left: 40px;
+    padding-top: 70px;
+    padding-bottom: 30px;
+    display: inline-block;
+    width: 100%;
+}
+
+    .heading h1 {
+        margin: 0 0;
+        float: left;
+    }
+
+    .heading a {
+        
+        margin-right: 40px;
+    }
+
+.doc-container {
+    margin: 40px 40px;
+    margin-top: 0;
+}
+
+    .doc-container form {
+        display: inline-block;
+        width: 100%;
+    }
+
+        .doc-container form button {
+            margin-top: 20px;
+        }
+
+.collapsible p:first-child {
+    padding-bottom: 5px;
+    padding-top: 10px;
+}
+
+.collapsible p:last-child {
+    padding-top: 5px;
+}
+
+.property {
+    float: left;
+    width: 33%;
+}
+
+    .property .name {
+        font-weight: bold;
+    }
+
+.collection-item.expanded,
+.collapsible-body > div {
+    margin: 0;
+    padding: 2rem;
+    display: inline-block;
+    width: 100%;
+}
+
+    .collapsible-body > div .description {
+        margin-bottom: 10px;
+    }
+
+.right {
+    float: right;
+}
+
+.side-nav a {
+    height: 100%;
+    line-height: 20px;
+}
+
+.side-nav li {
+    line-height: 100%;
+}
+
+.side-nav.fixed .collapsible li a {
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.expander {
+    margin-top: 25px;
+}
+
+.side-nav.fixed .collapsible-header {
+    padding-top: 14px;
+    padding-bottom: 14px;
+}
+
+.side-nav li > a > i, .side-nav li > a > [class^="mdi-"], .side-nav li > a > [class*="mdi-"], .side-nav li > a > i.material-icons {
+    height: auto;
+}
+.side-nav .collapsible-body>ul:not(.collapsible)>li.active, .side-nav.fixed .collapsible-body>ul:not(.collapsible)>li.active{
+    background-color: rgba(0,0,0,0.05);
+}
+.side-nav .collapsible-body>ul:not(.collapsible)>li.active, .side-nav.fixed .collapsible-body>ul:not(.collapsible)>li.active a{
+    color: inherit;
+}
+.btn-floating {
+    background-color:#F44336;
+}
+.btn-large:hover,
+.btn-floating:hover{
+    background-color:#F44336;
+}

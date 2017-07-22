@@ -15,6 +15,14 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test9", "Test9\Test9.csproj", "{93732B3C-45A1-4A9A-943F-EF51137D9D87}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GDocImages", "GDocImages", "{D2D80F51-7ABF-414F-A0CC-0DE21BAED79C}"
+	ProjectSection(SolutionItems) = preProject
+		Documentation Images\Command_Button.png = Documentation Images\Command_Button.png
+		Documentation Images\Custom_Editing.png = Documentation Images\Custom_Editing.png
+		Documentation Images\Custom_Editing_Enabled.png = Documentation Images\Custom_Editing_Enabled.png
+		Documentation Images\Documentatio_Settings.png = Documentation Images\Documentatio_Settings.png
+		Documentation Images\Documentation.png = Documentation Images\Documentation.png
+		Documentation Images\Menu_Tool.png = Documentation Images\Menu_Tool.png
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
